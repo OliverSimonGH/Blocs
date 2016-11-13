@@ -201,6 +201,7 @@ select{
 /* Centers the text*/
 #popup1 .popup-header{
   padding: 13px;
+  font-size: 120%;
 }
 
 /* Main content, holds the form*/
