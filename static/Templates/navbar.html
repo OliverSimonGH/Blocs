@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <head>
-  <title> Navbar </title>
   <!-- <link rel="stylesheet" type="text/css" href="../CSS/bulma.css">
-  <link rel="stylesheet" type="text/css" href="navbar.css">  Using ../ goes back a directory --> 
+  <link rel="stylesheet" type="text/css" href="navbar.css">  Using ../ goes back a directory -->
 </head>
 <body>
 <div id="navbar">
-  <h1 id="center-title"> Blocs </h1>
-    <section>
-      <img id="navcog" src="cog.png">
-    </section>
+  <!-- <h1 id="center-title"> Blocs </h1> -->
+  <div id="dropdown">
+    <!-- cog2 is for testing purposes. Please delete and change to cog.png once testing is over -->
+    <span> <input type="image" src="cog2.png" id="navcog"> </span>
+      <nav id="dropdown-content">
+        <a href="profile.html"> Profile </a>
+        <a href="settings.html"> Settings </a>
+        <a href="logs.html"> Logs </a>
+        <a href="emails.html"> Email list </a>
+      </nav>
+    </div>
 </div>
 </body>
 </html>
