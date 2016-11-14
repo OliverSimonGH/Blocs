@@ -12,6 +12,10 @@ var CancelTwo = document.getElementById("cancel1");
 //Button to open the second popup.
 var BtnSecondPopup = document.getElementById('link-btn');
 
+//Favourites button.
+var unFavStar = document.getElementById('unfav');
+var favStar = document.getElementById('fav');
+
 //First two function are to display and cose first popup.
 function display() {
   popupOne.style.display = "block";
@@ -29,6 +33,20 @@ function display1() {
 function close1() {
   popupTwo.style.display = "none";
 };
+
+function fav() {
+  unFavStar.style.display = "none";
+  favStar.style.display = "block";
+};
+
+function unfav() {
+  unFavStar.style.display = "block";
+  favStar.style.display = "none";
+};
+
+//Toggles font betwwen clicks.
+unFavStar.addEventListener("click", fav);
+favStar.addEventListener("click", unfav);
 
 //Listens for click event for the first popup, open and close.
 linkFirstPopup.addEventListener("click", display);
