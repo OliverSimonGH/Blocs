@@ -80,8 +80,8 @@ textarea{
 /* Icon positioning */
 .favourite, .ellipsis{
   font-size: 30px;
-  margin: 7px;
-  display: inline
+  display: inline;
+  padding: 10px 0 10px 0;
 }
 
 .favourite{

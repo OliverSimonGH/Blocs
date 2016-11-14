@@ -68,9 +68,6 @@ video {
   max-width: 100%;
 }
 
-iframe {
-  border: 0;
-}
 
 table {
   border-collapse: collapse;
@@ -1341,6 +1338,8 @@ a.box:active {
   pointer-events: none;
 }
 
+
+
 .input[disabled]::-moz-placeholder, .input.is-disabled::-moz-placeholder,
 .textarea[disabled]::-moz-placeholder,
 .textarea.is-disabled::-moz-placeholder {
@@ -1688,7 +1687,8 @@ a.box:active {
 }
 
 .label:not(:last-child) {
-  margin-bottom: 5px;
+  margin-bottom: 20px;
+  margin-top: 5px;
 }
 
 .help {
@@ -6761,3 +6761,39 @@ a.panel-block:hover {
   border-bottom-color: #00d1b2;
 }
 /*# sourceMappingURL=bulma.css.map */
+<<<<<<< HEAD
+=======
+
+/* START OF SELF-WRITTEN CSS  */
+
+.container {
+  margin-left: 0 10% 10% 0;
+
+}
+#email {
+  width: 30%;
+}
+
+#send {
+  margin-left: 5%;
+  width: 10%;
+}
+
+.vector {
+  width: 30px;
+  height: 30px;
+}
+
+  #frame {
+    margin-top: 20px;
+    width: 800px;
+    height: 520px;
+    border: none;
+    -moz-transform: scale(0.2);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.2);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.2);
+    -webkit-transform-origin: 0 0;
+}
+>>>>>>> 43337d45fd5717a16f5455500d32555843d38eb8
