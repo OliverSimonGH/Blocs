@@ -1,0 +1,221 @@
+/* Defaul tags */
+*{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html, body{
+  height: 100%;
+  width: 100%;
+}
+
+input, textarea{
+  border: 2px solid #d3d3d3;
+  padding: 10px;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 15px;
+  height: 40px;
+}
+
+textarea{
+  resize: none;
+  padding: 10px;
+}
+
+/* Text to create a new block */
+.new-block{
+  position: absolute;
+  bottom: 30px;
+  left: 55px;
+}
+
+.new-block a{
+  text-decoration: underline;
+  color: #9d9292;
+  letter-spacing: 1px;
+}
+
+/* Background of popup, will make it darker */
+.popup {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* Holds all of the Content */
+.popup-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  background-color: #ffffff;
+  width: 680px;
+  height: 460px;
+  border: 2px solid #d3d3d3;
+}
+
+/* Icons are within header */
+.popup-header{
+  position: relative;
+  border-bottom: 2px solid #d3d3d3;
+  height: 50px;
+}
+
+/* Icon positioning */
+.favourite, .ellipsis{
+  font-size: 30px;
+  margin: 7px;
+  display: inline
+}
+
+.favourite{
+  float: right;
+  margin-right: 20px;
+}
+
+.ellipsis{
+  float: left;
+  margin-left: 20px;
+}
+
+/* Popup Form Positioning, holds main content */
+.popup-body{
+  padding: 20px;
+  text-align: left;
+}
+
+.popup-body button{
+  top: 30px;
+  left: 20px;
+  position: relative;
+  display: inline;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  background-color: #0095ff;
+  color: #ffffff
+}
+
+.popup-body button:hover{
+  background-color: #005aff;
+}
+
+input#url, #url1{
+  width:100%;
+}
+
+textarea#link, textarea#link1{
+  height: 100px;;
+  width: 40%;
+  border-style: dashed;
+  vertical-align: top;
+  display: inline;
+}
+
+input#title{
+  width: 80%;
+}
+
+textarea#notes{
+  width: 80%;
+  height: 50px;
+  vertical-align: top;
+}
+
+label{
+  font-weight: bold;
+  letter-spacing: 0.25px;
+  color: #6d6363;
+}
+
+/* Styling select box, cant do much due to restrictions */
+select{
+  margin-left: 20px;
+  height: 30px;
+  width: 125px;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+}
+
+/* The footer holds the two button, save and cancel */
+.popup-footer{
+  padding-right: 20px;
+  text-align: right;
+}
+
+/* Button Styling */
+.popup-footer button{
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 100px;
+}
+
+/* Different styling for the individual buttons with psuedo classes*/
+#submit, #submit1{
+  background-color: #0095ff;
+  color: #ffffff
+}
+
+#cancel, #cancel1{
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#submit:hover, #submit1:hover{
+  background-color: #005aff;
+}
+
+#cancel:hover, #cancel1:hover{
+  color: #ff0000;
+}
+
+/* Second modal for link preview */
+#popup1 .popup {
+  display: none;
+  z-index: 2;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.2);
+}
+
+/* Centers the text*/
+#popup1 .popup-header{
+  padding: 13px;
+  font-size: 120%;
+}
+
+/* Main content, holds the form*/
+#popup1 .popup-content {
+  width: 500px;
+  height: 350px;
+}
+
+textarea#url1{
+  width: 100%;
+  height: 80px;
+}
+
+textarea#link1{
+  width: 65%;
+  height: 100px;
+}
