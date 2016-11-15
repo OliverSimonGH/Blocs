@@ -28,6 +28,10 @@ textarea{
   padding: 10px;
 }
 
+.center {
+  margin:auto;
+}
+
 /* Text to create a new block */
 .new-block{
   position: absolute;
