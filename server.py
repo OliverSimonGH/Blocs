@@ -2,15 +2,18 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__, static_url_path="/static")
 
+#Home section - Adding blocks to database and removing from database
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template('home.html')
 
+#Emails - CRUD emails
 @app.route("/emails")
 def emails():
     return render_template('emails.html')
 
+#Logs - Add and view logs
 @app.route("/logs")
 def logs():
     return render_template('logs.html')
@@ -22,10 +25,6 @@ def profile():
 @app.route("/settings")
 def settings():
     return render_template('settings.html')
-
-@app.route("/nav")
-def nav():
-    return render_template('navbar.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
