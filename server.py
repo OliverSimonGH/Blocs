@@ -6,7 +6,8 @@ app = Flask(__name__, static_url_path="/static")
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    #Changed things
+    return render_template('index.html')
 
 #Emails - CRUD emails
 @app.route("/emails")
