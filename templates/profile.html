@@ -3,7 +3,6 @@
   <title> Profile </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
-  <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
   <link rel="stylesheet" tpye="text/css" href="../static/css/master.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -11,10 +10,18 @@
   <script src="static/js/profile.js"></script>
 </head>
 <body>
-  <span id="NavContainer"> </span>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="../static/js/profile.js"></script>
+  <nav>
+    <h1 id="center-title"> Blocs </h1>
+    <div id="dropdown">
+      <img id="cog" src="/static/images/cog.png" alt=""/>
+      <div id="dropdown-content">
+        <a href="/profile"> Profile </a>
+        <a href="/settings"> Settings </a>
+        <a href="/logs"> Logs </a>
+        <a href="/emails"> Email list </a>
+      </div>
+    </div>
+  </nav>
 
 </body>
 </html>
