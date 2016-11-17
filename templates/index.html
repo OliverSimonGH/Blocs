@@ -55,7 +55,7 @@
         </select>
       </p>
     </div>
-    <!-- {% block db_results %}
+    {% block db_results %}
     {%for item in result%}
       <hr>
       <p>{{item[0]}}</p>
@@ -63,7 +63,7 @@
       <p>{{item[2]}}</p>
       <hr>
     {%endfor%}
-    {% endblock %} -->
+    {% endblock %}
     <div class="modal-popups">
       <div id="popup" class="popup">
         <div class="popup-content">
@@ -78,23 +78,25 @@
           </div>
           <div class="popup-body">
             <form class="" action="/uploadBloc" method="post">
-              <input type="text" id="url" placeholder="To what URL shall this link go...">
+              <input name="url" type="text" id="url" placeholder="To what URL shall this link go..." required>
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
-              <input type="text" id="title" placeholder="Bloc Title...">
-              <textarea type="text" id="notes" placeholder="Your notes..."></textarea>
-              <label for="category">Category: </label><select class="category fa" name="category">
+              <input name="title" type="text" id="title" placeholder="Bloc Title..." required>
+              <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
+              <label for="category">Category: </label>
+              <select class="category fa" id="category" name="category">
                 <option value="all">All</option>
                 <option value="video" class="fa">&#xf04b; Video</option>
                 <option value="web" class="fa">&#xf0c1; Web</option>
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
-              <div class="popup-footer">
-                <button type="button" id="cancel">Cancel</button>
-                <button type="submit" id="submit">Save</button>
-              </div>
+              <input type="submit">
             </form>
+          </div>
+          <div class="popup-footer">
+            <button type="button" id="cancel">Cancel</button>
+            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </div>
       </div>
