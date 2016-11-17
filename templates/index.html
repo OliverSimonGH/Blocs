@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/input.css">
+
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -97,10 +99,10 @@
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go..." required>
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
-              <form action="" method=post enctype=multipart/form-data>
-        <p><input type=file name=file>
-        </form>
-        <input type=submit value=Upload>
+
+              <input id="file" type="file" />
+
+
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
               <input name="title" type="text" id="title" placeholder="Bloc Title..." required>
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
