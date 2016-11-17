@@ -69,7 +69,7 @@
             </div>
           </div>
           <div class="popup-body">
-            <form class="" action="index.html" method="post">
+            <form class="" action="/uploadBloc" method="post">
               <input type="text" id="url" placeholder="To what URL shall this link go..." required>
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
@@ -82,11 +82,13 @@
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
+              <input type="submit">
+
             </form>
           </div>
           <div class="popup-footer">
             <button type="button" id="cancel">Cancel</button>
-            <button type="button" id="submit">Save</button>
+            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </div>
       </div>
@@ -110,7 +112,7 @@
       </div>
 
       <aside class="new-block">
-        <a href="#">Create new Bloc</a>
+        <a>Create new Bloc</a>
       </aside>
     </div>
 
