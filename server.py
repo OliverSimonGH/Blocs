@@ -13,10 +13,6 @@ def home():
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    print(request.form["url"])
-    print(request.form["title"])
-    print(request.form["notes"])
-    print(request.form["category"])
     parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
     database.write_bloc_to_database(parameters)
     db_result = database.select_all()
@@ -27,9 +23,15 @@ def upload_bloc():
         current_list.append(row[0])
         current_list.append(row[1])
         current_list.append(row[2])
+        current_list.append(row[3])
         result_list.append(current_list)
 
     return render_template('index.html', result=result_list)
+
+@app.route("/readBloc", methods=['GET'])
+def read_bloc():
+    pass
+
 #Emails - CRUD emails
 @app.route("/emails")
 def emails():

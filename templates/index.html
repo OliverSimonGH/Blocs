@@ -61,6 +61,7 @@
       <p>{{item[0]}}</p>
       <p>{{item[1]}}</p>
       <p>{{item[2]}}</p>
+      <p>{{item[3]}}</p>
       <hr>
     {%endfor%}
     {% endblock %}
@@ -91,12 +92,11 @@
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
-              <input type="submit">
+              <button type="button" id="cancel">Cancel</button>
+              <input type="submit" id="submit" value="submit">Save</button>
             </form>
           </div>
           <div class="popup-footer">
-            <button type="button" id="cancel">Cancel</button>
-            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </div>
       </div>
