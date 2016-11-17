@@ -17,7 +17,7 @@ def upload_bloc():
     print(request.form["title"])
     print(request.form["notes"])
     print(request.form["category"])
-    parameters = [request.form['url'], request.form['title'], request.form['notes'], request.form['category']]
+    parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
     database.write_bloc_to_database(parameters)
     db_result = database.select_all()
     result_list = []
