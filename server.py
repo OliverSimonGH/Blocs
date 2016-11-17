@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 import database
 import sqlite3
+import os
 app = Flask(__name__, static_url_path="/static")
 
 #Home section - Adding blocks to database and removing from database
@@ -14,10 +15,17 @@ def home():
 def upload_bloc():
     parameters = ["Second bloc", "This is the second bloc", "http://www.google.co.uk"]
     database.write_bloc_to_database(parameters)
-    result = database.select_all()
-    print(result)
-    result = jsonify(result)
-    return result
+    db_result = database.select_all()
+    result_list = []
+    current_list = []
+    print(db_result.length)
+    for row in db_result:
+        current_list.append(row[0])
+        current_list.append(row[1])
+        current_list.append(row[2])
+        result_list.append(current_list)
+
+    return render_template('index.html', result=result_list)
 #Emails - CRUD emails
 @app.route("/emails")
 def emails():
@@ -45,5 +53,5 @@ if __name__ == "__main__":
     app.run(debug=True)
     database.delete_tables()
     database.create_tables()
-    database.populate_tables()
+    #database.populate_tables()
     database.select_all()

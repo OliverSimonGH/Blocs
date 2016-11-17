@@ -28,8 +28,10 @@ def select_all():
     conn = sqlite3.connect(DATABASE)
     cur = conn.cursor()
     cur.execute("SELECT * FROM Blocs")
-    print(cur.fetchall())
+    conn.row_factory = sqlite3.Row
+    result = cur.fetchall()
     conn.close()
+    return result
 
 def write_bloc_to_database(parameters):
     print("Called")
