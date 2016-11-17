@@ -13,12 +13,16 @@ def home():
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    parameters = ["Second bloc", "This is the second bloc", "http://www.google.co.uk"]
+    print(request.form["url"])
+    print(request.form["title"])
+    print(request.form["notes"])
+    print(request.form["category"])
+    parameters = [request.form['url'], request.form['title'], request.form['notes'], request.form['category']]
     database.write_bloc_to_database(parameters)
     db_result = database.select_all()
     result_list = []
     current_list = []
-    print(db_result.length)
+
     for row in db_result:
         current_list.append(row[0])
         current_list.append(row[1])
@@ -52,6 +56,7 @@ def page_not_found(e):
 if __name__ == "__main__":
     app.run(debug=True)
     database.delete_tables()
+    database.create_tags()
     database.create_tables()
     #database.populate_tables()
     database.select_all()
