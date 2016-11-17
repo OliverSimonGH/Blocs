@@ -99,11 +99,11 @@
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go..." required>
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
-              
+
               <img id="uploadPreview" style="width: 100px; height: 100px;" />
 
 
-              <input id="file" type="file" />
+              <input id="file" type="file" onchange="PreviewImage()"/>
 
 
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
@@ -147,6 +147,7 @@
     </div>
 
     <script type="text/javascript" src="static/js/modal.js"></script>
+    <script type="text/javascript" src="static/js/imagePreview.js"></script>
     <script type="text/javascript" src="static/js/drag.js"></script>
     <script src="https://use.fontawesome.com/1ff151e915.js"></script>
   </body>
