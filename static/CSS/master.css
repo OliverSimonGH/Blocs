@@ -18,13 +18,13 @@ html, body{
 
   #center-title {
   width:200px;
-  font-size:30px;
+  font-size:35px;
   color:white;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   text-align:center;
-  margin-top:3px;
+  letter-spacing:4px;
   }
 
   #cog {
@@ -32,7 +32,6 @@ html, body{
   height:25px;
   margin-right:55px;
   margin-top:12px;
-  margin-bottom:8px;
   }
 
   #dropdown {
@@ -43,30 +42,40 @@ html, body{
   overflow:visible;
   }
 
-  #dropdown-content:first-child {
-    margin-top:10px;
-  }
-
   #dropdown-content {
   display: none;
   position: absolute;
+  width:200px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0#2);
   right:0;
+  margin-right:20px;
   }
 
-  #dropdown-content a {
+  #dropdown-content a, #nav-username {
   color: black;
-  padding:10px;
   padding-left:30px;
+  padding-top:5px;
+  padding-bottom:5px;
   text-decoration: none;
   display: block;
+  font-size:18px;
   }
 
-  #dropdown-content a:hover {
+  #dropdown-content a:hover, #nav-username:hover{
   background-color: #f2f2f2
   }
 
+  #nav-username {
+  margin-top:20px;
+  }
+
+  #logout {
+  margin-top:15px;
+  border-width:2px;
+  border-top-style:solid;
+  border-color:#e6e6e6;
+  }
   #dropdown:hover #dropdown-content {
   display: block;
   }
