@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/input.css">
+
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -41,9 +43,9 @@
       </span>
     </p>
     <label class="label"><img class="vector" src="../static/images/play.png" alt="" />Links to send</label>
-    <p class="control">
-      <textarea class="textarea" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea>
-    </p>
+    <div class="box"id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)">
+    </div>
+
 
     <label class="label"><img class="vector" src="../static/images/folder.png" alt="" />My Portfolio</label>
     <p class="control">
@@ -56,13 +58,30 @@
           <option>Links</option>
         </select>
       </p>
-    </div>
+<label class="lavel">Placeholder Images</label>
+<div class = "box"ondrop="drop(event)" ondragover="allowDrop(event)">
+  <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+<a href="http://www.w3schools.com"><img src="../static/images/play.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
+ <img src="../static/images/folder.png" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
+ <img src="../static/images/folder.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+</div>
+
+<aside class="new-block">
+  <a>Create new Bloc</a>
+</aside>
+    </div> <!-- NOTE: END OF WRAP - HAVE CONTENT THAT WILL BE DISPLAYED WITHIN -->
+
+
     {% block db_results %}
     {%for item in result%}
       <hr>
       <p>{{item[0]}}</p>
       <p>{{item[1]}}</p>
       <p>{{item[2]}}</p>
+      <p>{{item[3]}}</p>
       <hr>
     {%endfor%}
     {% endblock %}
@@ -82,6 +101,13 @@
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go..." required>
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
+
+              <img id="uploadPreview" style="width: 200px; height: 100px;" />
+
+
+              <input id="file" type="file" onchange="PreviewImage()"/>
+
+
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
               <input name="title" type="text" id="title" placeholder="Bloc Title..." required>
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
@@ -93,12 +119,11 @@
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
-              <input type="submit">
+              <button type="button" id="cancel">Cancel</button>
+              <input type="submit" id="submit" value="submit">Save</button>
             </form>
           </div>
           <div class="popup-footer">
-            <button type="button" id="cancel">Cancel</button>
-            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </div>
       </div>
@@ -121,12 +146,11 @@
         </div>
       </div>
 
-      <aside class="new-block">
-        <a>Create new Bloc</a>
-      </aside>
     </div>
 
     <script type="text/javascript" src="static/js/modal.js"></script>
+    <script type="text/javascript" src="static/js/imagePreview.js"></script>
+    <script type="text/javascript" src="static/js/drag.js"></script>
     <script src="https://use.fontawesome.com/1ff151e915.js"></script>
   </body>
 </html>
