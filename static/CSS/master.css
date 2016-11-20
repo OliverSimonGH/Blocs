@@ -102,16 +102,19 @@ textarea{
 }
 
 /* Text to create a new block */
-.new-block{
-  position: absolute;
-  bottom: 30px;
-  left: 55px;
-}
+
 
 .new-block a{
-  text-decoration: underline;
-  color: #9d9292;
-  letter-spacing: 1px;
+  top: 30px;
+  left: 20px;
+  position: relative;
+  display: inline;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  background-color: #0095ff;
+  color: #ffffff;
 }
 
 /* Background of popup, will make it darker */
