@@ -15,7 +15,6 @@ html, body{
 }
 
 /* Navbar */
-
   #center-title {
   width:200px;
   font-size:30px;
@@ -78,9 +77,8 @@ html, body{
   margin-top: 0;
   }
 
-input, textarea{
+input[type=textarea],input[type=text], textarea{
   border: 2px solid #d3d3d3;
-  padding: 10px;
   letter-spacing: 1px;
   display: block;
   margin-bottom: 15px;
@@ -89,12 +87,11 @@ input, textarea{
 
 textarea{
   resize: none;
-  padding: 10px;
 }
 
 /* Text to create a new block */
 .new-block{
-  position: absolute;
+  position: absolute;;
   bottom: 30px;
   left: 55px;
 }
@@ -181,11 +178,11 @@ textarea{
   background-color: #005aff;
 }
 
-input#url, #url1{
+.popup-body input#url, #url1{
   width:100%;
 }
 
-textarea#link, textarea#link1{
+.popup-body textarea#link, textarea#link1{
   height: 100px;;
   width: 40%;
   border-style: dashed;
@@ -193,17 +190,17 @@ textarea#link, textarea#link1{
   display: inline;
 }
 
-input#title{
+.popup-body input#title{
   width: 80%;
 }
 
-textarea#notes{
+.popup-body textarea#notes{
   width: 80%;
   height: 50px;
   vertical-align: top;
 }
 
-label{
+.popup-body label{
   font-weight: bold;
   letter-spacing: 0.25px;
   color: #6d6363;
@@ -274,12 +271,115 @@ select{
   height: 350px;
 }
 
-textarea#url1{
+#popup1 textarea#url1{
   width: 100%;
   height: 80px;
 }
 
-textarea#link1{
+#popup1 textarea#link1{
   width: 65%;
   height: 100px;
+}
+
+.fa-folder, .fa-arrow-circle-right{
+  font-size: 150% !important;
+}
+
+.portfolio span, .links-to-send span{
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.drag-links{
+  margin: 20px auto 50px auto;
+  border: 2px dashed #b9afaf;
+  height: 150px;
+  width: 60%;
+  resize: none;
+  border-radius: 10px;
+}
+
+.drag-links::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 140px;
+}
+
+.drag-links::-moz-placeholder {
+  text-align: center;
+  line-height: 140px;
+}
+
+.drag-links:-ms-input-placeholder {
+  text-align: center;
+  line-height: 140px;
+}
+
+.portfolio .category{
+  position: relative;
+  top: -2px;
+  left: -10px;
+  width: 100px;
+}
+
+.send-email{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.send-email input[type=email]{
+  width: 50%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 20px;
+}
+
+.send-email button{
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 100px;
+  background-color: #0095ff;
+  color: #ffffff;
+}
+
+.send-email button:hover{
+  background-color: #005aff;
+}
+
+.send-email input[type=checkbox], .send-email label#radio-text {
+position: relative;
+left: 15%;
+top: 35px;
+font-size: 16px;
+}
+
+.send-email input[type=checkbox]{
+-ms-transform: scale(1.25); /* IE */
+-moz-transform: scale(1.25); /* FF */
+-webkit-transform: scale(1.25); /* Safari and Chrome */
+}
+
+.send-email label#radio-text{
+  margin-left: 10px;
+}
+
+.type-email{
+  border: 2px solid #d3d3d3;
+  letter-spacing: 1px;
+  height: 40px;
+}
+
+.email-container{
+  position: relative;
+  display: inline;
+  height: 100px;
+  width: 50%;
+}
+
+.email-fav{
+  position: absolute;
+  bottom: 0px;
+  right: 50px;
 }

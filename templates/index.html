@@ -22,48 +22,49 @@
   </nav>
 
   <div class="container">
-    <label class="label">To:</label>
-    <p class="control has-icon has-icon-right">
-      <input id="email" class="input is-danger" type="text" placeholder="E-mail Address..."><button id="send" class="button is-primary">Send</button>
-      <i class="fa fa-warning"></i>
-      <span class="help is-danger">This email is invalid</span>
-    </p>
-
-    <label class="label">Subject</label>
-    <p class="control">
-      <span class="select">
-        <select>
-          <option>Select dropdown</option>
-          <option>With options</option>
-        </select>
-      </span>
-    </p>
-    <label class="label"><img class="vector" src="../static/images/play.png" alt="" />Links to send</label>
-    <p class="control">
-      <textarea class="textarea" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea>
-    </p>
-
-    <label class="label"><img class="vector" src="../static/images/folder.png" alt="" />My Portfolio</label>
-    <p class="control">
-      <span class="select">
-        <select>
-          <option>Select..</option>
-          <option>Links</option>
-          <option>Links</option>
-          <option>Links</option>
-          <option>Links</option>
-        </select>
-      </p>
+    <div class="send-email has-text-centered">
+      <form class="" action="index.html" method="post">
+        <label for="current-email" class="is-inline">To: </label>
+        <div class="email-container">
+          <input type="email" name="email" class="type-email" placeholder="E-Mail Address...">
+          <div class="email-fav">
+            <input type="checkbox" name="radio"><label for="radio" id="radio-text">Add to E-Mail list</label>
+          </div>
+        </div>
+        <button type="submit" class="is-inline">Send</button>
+      </form>
     </div>
-    <!-- {% block db_results %}
-    {%for item in result%}
-      <hr>
-      <p>{{item[0]}}</p>
-      <p>{{item[1]}}</p>
-      <p>{{item[2]}}</p>
-      <hr>
-    {%endfor%}
-    {% endblock %} -->
+
+    <div class="links-to-send">
+      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
+      <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea>
+    </div>
+
+    <!-- <textarea class="textarea" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea> -->
+    <div class="portfolio">
+      <i class="fa fa-folder" aria-hidden="true"></i><span>Portfolio</span>
+      <select class="category fa" name="category">
+        <option value="all">All</option>
+        <option value="video" class="fa">&#xf04b; Video</option>
+        <option value="web" class="fa">&#xf0c1; Web</option>
+        <option value="images" class="fa">&#xf030; Images</option>
+        <option value="favourites" class="fa">&#xf005; Favourites</option>
+      </select>
+    </div>
+
+      <div class="submitted-blocs">
+        {% block db_results %}
+        {%for item in result%}
+        <div class="indivdiual-blocs">
+          <p>{{item[0]}}</p>
+          <p>{{item[1]}}</p>
+          <p>{{item[2]}}</p>
+        </div>
+        {%endfor%}
+        {% endblock %}
+      </div>
+    </div>
+
     <div class="modal-popups">
       <div id="popup" class="popup">
         <div class="popup-content">
