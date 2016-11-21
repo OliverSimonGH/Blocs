@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path="/static")
 @app.route("/")
 @app.route("/home")
 def home():
-    database.select_all()
+    #database.select_all()
     return render_template('index.html')
 
 @app.route("/uploadBloc", methods=['POST'])
@@ -24,6 +24,7 @@ def upload_bloc():
         current_list.append(row[1])
         current_list.append(row[2])
         current_list.append(row[3])
+        current_list.append(row[4])
         result_list.append(current_list)
 
     return render_template('index.html', result=result_list)
@@ -60,5 +61,5 @@ if __name__ == "__main__":
     database.delete_tables()
     database.create_tags()
     database.create_tables()
-    #database.populate_tables()
+    database.populate_tables()
     database.select_all()

@@ -2,32 +2,33 @@ import os
 from flask import Flask, redirect, request, render_template
 import sqlite3
 
-DATABASE = 'blocs.db'
+DATABASE = 'Blocs.db'
 
 def create_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute('CREATE TABLE IF NOT EXISTS Blocs (\
+    `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
     `Title` TEXT NOT NULL,\
     `Description` TEXT NOT NULL,\
     `Link` TEXT NOT NULL, \
     `TagID` INTEGER NOT NULL,\
-    FOREIGN KEY (TagID) REFERENCES Tags(ID));')
+    FOREIGN KEY(TagID) REFERENCES Tags(ID));')
     conn.close()
 
 def create_tags():
     conn = sqlite3.connect(DATABASE)
     conn.execute('CREATE TABLE IF NOT EXISTS Tags (\
-    `ID` PRIMARY KEY NOT NULL, \
+    `ID` INTEGER PRIMARY KEY NOT NULL, \
     `Title` TEXT NOT NULL);')
     conn.close()
 
 def populate_tables():
     conn = sqlite3.connect(DATABASE)
-    conn.execute("INSERT INTO Tags (`ID`, `Title`) VALUES(1, 'All')")
-    conn.execute("INSERT INTO Tags (`ID`, `Title`) VALUES(2, 'Video')")
-    conn.execute("INSERT INTO Tags (`ID`, `Title`) VALUES(3, 'Web')")
-    conn.execute("INSERT INTO Tags (`ID`, `Title`) VALUES(4, 'Images')")
-    conn.execute("INSERT INTO Tags (`ID`, `Title`) VALUES(5, 'Favourites')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('All')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Video')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Web')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Images')")
+    conn.execute("INSERT INTO Tags ( `Title`) VALUES('Favourites')")
     conn.commit()
     conn.close()
 
@@ -49,7 +50,8 @@ def select_all():
 def write_bloc_to_database(parameters):
     conn = sqlite3.connect(DATABASE)
     cur = conn.cursor()
-    cur.execute("INSERT INTO Blocs(`Title`, `Description`, `Link`, TagID) VALUES(?, ?, ?, ?)", (parameters[0], parameters[1], parameters[2], check_param_value(parameters[3])))
+    tag_value = check_param_value(parameters[3])
+    cur.execute("INSERT INTO Blocs(`Title`, `Description`, `Link`, `TagID`) VALUES(?, ?, ?, ?)", (parameters[0], parameters[1], parameters[2], tag_value))
     conn.commit()
     conn.close()
 
