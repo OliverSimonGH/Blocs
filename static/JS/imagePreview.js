@@ -3,6 +3,6 @@ function PreviewImage() {
         oFReader.readAsDataURL(document.getElementById("file").files[0]);
 
         oFReader.onload = function (oFREvent) {
-            document.getElementById("div1").src = oFREvent.target.result;
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
         };
     };

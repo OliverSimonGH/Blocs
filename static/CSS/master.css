@@ -143,7 +143,7 @@ textarea{
   text-align: center;
   background-color: #ffffff;
   width: 680px;
-  height: 470px;
+  height: 490px;
   border: 2px solid #d3d3d3;
 }
 
@@ -180,14 +180,14 @@ textarea{
 .popup-body button{
   top: 30px;
   left: 20px;
-  position: relative;
-  display: inline;
   padding: 10px 15px;
   border-radius: 5px;
   letter-spacing: 0.5px;
   font-weight: bold;
   background-color: #0095ff;
-  color: #ffffff
+  color: #ffffff;
+
+
 }
 
 
