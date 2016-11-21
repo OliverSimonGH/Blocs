@@ -103,14 +103,18 @@ textarea{
 /* Text to create a new block */
 
 .new-block{
-  position: absolute;;
-  bottom: 30px;
-  left: 55px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 150px;
+  background-color: #0095ff;
+  color: #ffffff;
 }
 
+
 .new-block a{
-  text-decoration: underline;
-  color: #9d9292;
+  color: #fff;
   letter-spacing: 1px;
 }
 
