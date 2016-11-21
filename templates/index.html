@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
-  <link rel="stylesheet" type="text/css" href="../static/css/input.css">
+
+
+
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
@@ -58,8 +60,9 @@
           <option value="favourites" class="fa">&#xf005; Favourites</option>
         </select>
       </div>
+
       <div class="portfolio-content">
-        <div class = "box"ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
         <a href="http://www.w3schools.com"><img src="../static/images/play.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
          <img src="../static/images/folder.png" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
@@ -67,7 +70,7 @@
         </div>
       </div>
     </div>
-
+    
       <div class="submitted-blocs">
         {% block db_results %}
         {%for item in result%}
@@ -98,8 +101,9 @@
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
               <textarea type="text" id="link" placeholder="Link preview..."></textarea>
-              <!-- <img id="uploadPreview" class="is-inline" style="width: 200px; height: 100px;" />
-              <input id="file" type="file" class=""onchange="PreviewImage()"/> -->
+              <!-- <img id="uploadPreview" class="is-inline" style="width: 200px; height: 100px;">
+              <input id="file" type="file" class=""onchange="PreviewImage()"/>
+              <input type="button" name="" value="upload" id="uploadd"> -->
               <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
               <input name="title" type="text" id="title" placeholder="Bloc Title...">
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
@@ -145,7 +149,7 @@
 
     <script type="text/javascript" src="static/js/emailValidation.js"></script>
     <script type="text/javascript" src="static/js/modal.js"></script>
-    <script type="text/javascript" src="static/js/imagePreview.js"></script>
+    <script type="text/javascript" src="static/js/imagePreview2.js"></script>
     <script type="text/javascript" src="static/js/drag.js"></script>
     <script src="https://use.fontawesome.com/1ff151e915.js"></script>
   </body>
