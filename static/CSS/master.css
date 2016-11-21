@@ -408,3 +408,14 @@ font-size: 16px;
   bottom: 0px;
   right: 50px;
 }
+
+/* NOTE:  STYLES FOR THE UPLOAD BUTTON */
+input#file {
+  margin-left: 100px;
+  padding: 120px 0 0 0;
+  height: 100px;
+  width: 50px;
+  overflow: hidden;
+  background: url("../images/uploadIcon.png") center no-repeat;
+  background-size: contain;
+}

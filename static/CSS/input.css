@@ -1,9 +1,0 @@
-input#file {
-  margin-left: 100px;
-  padding: 120px 0 0 0;
-  height: 100px;
-  width: 50px;
-  overflow: hidden;
-  background: url("../images/uploadIcon.png") center no-repeat;
-  background-size: contain;
-}
