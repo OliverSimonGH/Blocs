@@ -7,7 +7,7 @@ app = Flask(__name__, static_url_path="/static")
 app.secret_key = "this_is_a_secret"
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
-@app.route("/Home")
+@app.route("/home")
 def home():
     #database.select_all()
     return render_template('index.html')
