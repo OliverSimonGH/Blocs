@@ -267,6 +267,13 @@ select{
   color: #ff0000;
 }
 
+#uploadPreview {
+  width: 200px;
+  height: 100px;
+  border-width:2px;
+  border-color: rgba(0,0,0,0.2);
+
+}
 /* Second modal for link preview */
 #popup1 .popup {
   display: none;
