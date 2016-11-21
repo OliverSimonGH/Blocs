@@ -178,15 +178,15 @@ textarea{
 }
 
 .popup-body button{
-  top: 30px;
-  left: 20px;
   padding: 10px 15px;
   border-radius: 5px;
   letter-spacing: 0.5px;
   font-weight: bold;
   background-color: #0095ff;
   color: #ffffff;
-
+  position: absolute;
+  right: 20px;
+  bottom: 280px;
 
 }
 
