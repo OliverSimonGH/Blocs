@@ -1,31 +1,58 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
 import os
+import re
 app = Flask(__name__, static_url_path="/static")
-
+app.secret_key = "this_is_a_secret"
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
-@app.route("/home")
+@app.route("/Home")
 def home():
     database.select_all()
     return render_template('index.html')
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    parameters = ["Second bloc", "This is the second bloc", "http://www.google.co.uk"]
+    parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
     database.write_bloc_to_database(parameters)
     db_result = database.select_all()
     result_list = []
     current_list = []
-    print(db_result.length)
+
     for row in db_result:
         current_list.append(row[0])
         current_list.append(row[1])
         current_list.append(row[2])
+        current_list.append(row[3])
         result_list.append(current_list)
 
     return render_template('index.html', result=result_list)
+
+
+@app.route("/sendEmail", methods=['POST'])
+def sendEmail():
+    email = request.form['sendemail']
+    email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+
+    if not email_val.match(email):
+        msg = "Please enter a valid e-mail address"
+        return render_template("index.html", data=msg)
+    else:
+        #store data into database
+        # conn = sqlite3.connect(DATABASE)
+        # cur = conn.cursor()
+        # cur.execute("INSERT INTO Emails ('emailAddress')\
+        #              VALUES (?)",(email))
+        # conn.commit()
+        msg = "Success"
+        return render_template("index.html", data=msg)
+
+
+@app.route("/readBloc", methods=['GET'])
+def read_bloc():
+    pass
+
 #Emails - CRUD emails
 @app.route("/emails")
 def emails():
@@ -52,6 +79,7 @@ def page_not_found(e):
 if __name__ == "__main__":
     app.run(debug=True)
     database.delete_tables()
+    database.create_tags()
     database.create_tables()
-    #database.populate_tables()
+    # database.populate_tables()
     database.select_all()
