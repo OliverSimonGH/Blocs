@@ -44,6 +44,16 @@ function unfav() {
   favStar.style.display = "none";
 };
 
+window.onclick = function(event) {
+    if (event.target == popupOne) {
+        popupOne.style.display = "none";
+    }
+
+    if (event.target == popupTwo) {
+        popupTwo.style.display = "none";
+    }
+}
+
 //Toggles font betwwen clicks.
 unFavStar.addEventListener("click", fav);
 favStar.addEventListener("click", unfav);
