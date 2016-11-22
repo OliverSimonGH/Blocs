@@ -27,13 +27,13 @@
 
   <div class="container">
     <div class="send-email has-text-centered">
-      <span id="result">{{ data }}</span>
+      <span id="result">{{ msg }}</span>
       <form method="post" action="\sendEmail"  novalidate>
         <label for="current-email" class="is-inline">To: </label>
         <div class="email-container">
-          <input type="email" name="sendemail" id="current-email "class="type-email" placeholder="E-Mail Address...">
+          <input type="email" name="send-email" id="current-email "class="type-email" placeholder="E-Mail Address...">
           <div class="email-fav">
-            <input type="checkbox" name="radio"><label for="radio" id="radio-text">Add to E-Mail list</label>
+            <input type="checkbox" name="send-radio"><label for="radio" id="radio-text">Add to E-Mail list</label>
           </div>
         </div>
         <button type="submit" class="is-inline">Send</button>
@@ -143,7 +143,6 @@
       <a href="#">Create new Bloc</a>
     </aside>
 
-    <script type="text/javascript" src="static/js/emailValidation.js"></script>
     <script type="text/javascript" src="static/js/modal.js"></script>
     <script type="text/javascript" src="static/js/imagePreview.js"></script>
     <script type="text/javascript" src="static/js/drag.js"></script>

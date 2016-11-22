@@ -6,6 +6,11 @@ DATABASE = 'Blocs.db'
 
 def create_tables():
     conn = sqlite3.connect(DATABASE)
+    conn.execute('CREATE TABLE IF NOT EXISTS `Emails` (\
+    `emailId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+    `emailAddress` TEXT NOT NULL UNIQUE,\
+    `emailList` INTEGER);')
+
     conn.execute('CREATE TABLE IF NOT EXISTS Blocs (\
     `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
     `Title` TEXT NOT NULL,\
@@ -28,13 +33,21 @@ def populate_tables():
     conn.execute("INSERT INTO Tags (`Title`) VALUES('Video')")
     conn.execute("INSERT INTO Tags (`Title`) VALUES('Web')")
     conn.execute("INSERT INTO Tags (`Title`) VALUES('Images')")
-    conn.execute("INSERT INTO Tags ( `Title`) VALUES('Favourites')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Favourites')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('oliver@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example1@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example2@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake@yahoo.com', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake1@yahoo.com', '0')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake2@yahoo.com', '0')")
     conn.commit()
     conn.close()
 
 def delete_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute("DROP TABLE IF EXISTS Blocs;")
+    conn.execute("DROP TABLE IF EXISTS Emails;")
     conn.commit()
     conn.close()
 
@@ -44,6 +57,7 @@ def select_all():
     cur.execute("SELECT * FROM Blocs")
     conn.row_factory = sqlite3.Row
     result = cur.fetchall()
+    print(result)
     conn.close()
     return result
 

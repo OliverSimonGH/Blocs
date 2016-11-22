@@ -3,21 +3,46 @@
   <title> Email list </title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
-  <link rel="stylesheet" tpye="text/css" href="../static/css/master.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/master.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <h1 id="center-title"> Blocs </h1>
-    <div id="dropdown">
-      <img id="cog" src="/static/images/cog.png" alt=""/>
-      <div id="dropdown-content">
-        <a href="/profile"> Profile </a>
-        <a href="/settings"> Settings </a>
-        <a href="/logs"> Logs </a>
-        <a href="/emails"> Email list </a>
-      </div>
+  <nav id="email-list-nav">
+    <div class="email-list-search">
+      <i class="fa fa-search" aria-hidden="true"></i>
     </div>
+      <div class="email-list-back">
+        <a href="/"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+      </div>
   </nav>
+  <div class="email-list-title">
+    <h3>Mailing List</h3>
+  </div>
+  <div class="email-list-sort-table">
+    <span>Sorted by: </span>
+    <select class="category" name="category">
+      <option value="new">Newest</option>
+      <option value="az-sort">A - Z</option>
+      <option value="za-sort">Z - A </option>
+      <option value="date">Date </option>
+    </select>
+  </div>
+  <div class="email-list-table">
+    <table>
+      <thead>
+        <tr><td>Email</td><td></td></tr>
+      </thead>
+      <tbody>
+        {% for email in email_address %}
+        <tr><td>{{ email[0] }}</td><td><a href="#">Remove from list</a></td></tr>
+        {% endfor %}
+        <!-- <tr><td>oliver_simon@hotmail.co.uk</td><td><a href="#">Remove from list</a></td></tr>
+        <tr><td>morgan@yahoo.com</td><td><a href="#">Remove from list</a></td></tr>
+        <tr><td>ian@domain.com</td><td><a href="#">Remove from list</a></td></tr>
+        <tr><td>idontknowaname@hotmail.co.uk</td><td><a href="#">Remove from list</a></td></tr> -->
+      </tbody>
+    </table>
+  </div>
+  <script src="https://use.fontawesome.com/1ff151e915.js"></script>
 </body>
 </html>

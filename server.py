@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
-import os
-import re
+import os, re
+
 app = Flask(__name__, static_url_path="/static")
 app.secret_key = "this_is_a_secret"
+DATABASE = "Blocs.db"
+
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
 @app.route("/home")
@@ -33,31 +35,40 @@ def upload_bloc():
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
-    email = request.form['sendemail']
+    email_sent = request.form.get('send-email')
+    email_radio = request.form.get('send-radio')
+    check = bool(email_radio)
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
-    if not email_val.match(email):
-        msg = "Please enter a valid e-mail address"
-        return render_template("index.html", data=msg)
-    else:
-        #store data into database
-        # conn = sqlite3.connect(DATABASE)
-        # cur = conn.cursor()
-        # cur.execute("INSERT INTO Emails ('emailAddress')\
-        #              VALUES (?)",(email))
-        # conn.commit()
-        msg = "Success"
-        return render_template("index.html", data=msg)
+    if email_sent == "":
+        msg = "Please enter an e-mail address"
 
+    elif not email_val.match(email_sent):
+        msg = "Please enter a valid e-mail address"
+
+    else:
+        # store data into database
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO Emails ('emailAddress', 'emailList')\
+                     VALUES (?,?)", (email_sent, check))
+        conn.commit()
+        msg = "You have sent an e-mail to: " + email_sent
+    return render_template("index.html", msg=msg)
 
 @app.route("/readBloc", methods=['GET'])
 def read_bloc():
     pass
 
 #Emails - CRUD emails
-@app.route("/emails")
+@app.route("/emails", methods=['GET'])
 def emails():
-    return render_template('emails.html')
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("SELECT emailAddress FROM Emails WHERE emailList = 1")
+    email_address = cur.fetchall()
+    conn.close()
+    return render_template('emails.html',  email_address = email_address)
 
 #Logs - Add and view logs
 @app.route("/logs")
@@ -78,9 +89,9 @@ def page_not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
     database.delete_tables()
     database.create_tags()
     database.create_tables()
     database.populate_tables()
     database.select_all()
+    app.run(debug=True)
