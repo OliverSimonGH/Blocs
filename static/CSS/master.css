@@ -99,17 +99,22 @@ textarea{
   resize: none;
 }
 
+
 /* Text to create a new block */
 
 .new-block{
-  position: absolute;;
-  bottom: 30px;
-  left: 55px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 150px;
+  background-color: #0095ff;
+  color: #ffffff;
 }
 
+
 .new-block a{
-  text-decoration: underline;
-  color: #9d9292;
+  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -138,7 +143,7 @@ textarea{
   text-align: center;
   background-color: #ffffff;
   width: 680px;
-  height: 470px;
+  height: 490px;
   border: 2px solid #d3d3d3;
 }
 
@@ -173,16 +178,16 @@ textarea{
 }
 
 .popup-body button{
-  top: 30px;
-  left: 20px;
-  position: relative;
-  display: inline;
   padding: 10px 15px;
   border-radius: 5px;
   letter-spacing: 0.5px;
   font-weight: bold;
   background-color: #0095ff;
-  color: #ffffff
+  color: #ffffff;
+  position: absolute;
+  right: 20px;
+  bottom: 280px;
+
 }
 
 
@@ -262,6 +267,13 @@ select{
   color: #ff0000;
 }
 
+#uploadPreview {
+  width: 200px;
+  height: 100px;
+  border-width:2px;
+  border-color: rgba(0,0,0,0.2);
+
+}
 /* Second modal for link preview */
 #popup1 .popup {
   display: none;
@@ -475,4 +487,15 @@ nav#email-list-nav a{
 
 .email-list-table thead{
   border-bottom: 1px solid #d3d3d3;
+}
+
+/* NOTE:  STYLES FOR THE UPLOAD BUTTON */
+input#file {
+  margin-left: 100px;
+  padding: 120px 0 0 0;
+  height: 100px;
+  width: 50px;
+  overflow: hidden;
+  background: url("../images/uploadIcon.png") center no-repeat;
+  background-size: contain;
 }
