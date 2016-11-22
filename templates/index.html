@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/dropzone.css">
+
+
+
+
+
+
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -41,7 +48,6 @@
     <div class="links-to-send">
       <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
       <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)">
-
         <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
       </div>
     </div>
@@ -154,6 +160,7 @@
 
     </div>
 
+    <script type="text/javascript" src="static/js/dropzone.js"></script>
 
     <script type="text/javascript" src="static/js/modal.js"></script>
     <script type="text/javascript" src="static/js/imagePreview.js"></script>
