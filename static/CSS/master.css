@@ -47,7 +47,7 @@ html, body{
   width:200px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0#2);
-  right:0;
+  right:10px;
   margin-right:20px;
   }
 
@@ -58,7 +58,7 @@ html, body{
   padding-bottom:5px;
   text-decoration: none;
   display: block;
-  font-size:18px;
+  font-size:15px;
   }
 
   #dropdown-content a:hover, #nav-username:hover{
