@@ -39,6 +39,7 @@ html, body{
   position: relative;
   display: inline-block;
   overflow:visible;
+  cursor: pointer;
   }
 
   #dropdown-content {
@@ -49,6 +50,7 @@ html, body{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0#2);
   right:10px;
   margin-right:20px;
+  background-color: #f9f9f9;
   }
 
   #dropdown-content a, #nav-username {
@@ -62,7 +64,8 @@ html, body{
   }
 
   #dropdown-content a:hover, #nav-username:hover{
-  background-color: #f2f2f2
+  background-color: #f2f2f2;
+  cursor: pointer;
   }
 
   #nav-username {
@@ -99,17 +102,22 @@ textarea{
   resize: none;
 }
 
+
 /* Text to create a new block */
 
 .new-block{
-  position: absolute;;
-  bottom: 30px;
-  left: 55px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 150px;
+  background-color: #0095ff;
+  color: #ffffff;
 }
 
+
 .new-block a{
-  text-decoration: underline;
-  color: #9d9292;
+  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -138,7 +146,7 @@ textarea{
   text-align: center;
   background-color: #ffffff;
   width: 680px;
-  height: 470px;
+  height: 490px;
   border: 2px solid #d3d3d3;
 }
 
@@ -173,16 +181,16 @@ textarea{
 }
 
 .popup-body button{
-  top: 30px;
-  left: 20px;
-  position: relative;
-  display: inline;
   padding: 10px 15px;
   border-radius: 5px;
   letter-spacing: 0.5px;
   font-weight: bold;
   background-color: #0095ff;
-  color: #ffffff
+  color: #ffffff;
+  position: absolute;
+  right: 20px;
+  bottom: 280px;
+
 }
 
 
@@ -262,6 +270,13 @@ select{
   color: #ff0000;
 }
 
+#uploadPreview {
+  width: 200px;
+  height: 100px;
+  border-width:2px;
+  border-color: rgba(0,0,0,0.2);
+
+}
 /* Second modal for link preview */
 #popup1 .popup {
   display: none;
@@ -361,12 +376,12 @@ select{
   background-color: #005aff;
 }
 
-.send-email input[type=checkbox], .send-email label#radio-text {
+/*.send-email input[type=checkbox], .send-email label#radio-text {
 position: relative;
 left: 15%;
 top: 35px;
 font-size: 16px;
-}
+}*/
 
 .send-email input[type=checkbox]{
 -ms-transform: scale(1.25); /* IE */
@@ -393,6 +408,97 @@ font-size: 16px;
 
 .email-fav{
   position: absolute;
-  bottom: 0px;
-  right: 50px;
+  bottom: -37px;
+  right: 25px;
+}
+
+.send-email #result {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+}
+
+/* email page */
+/* Nav */
+.email-list-search, .email-list-back{
+  color: #ffffff;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+}
+
+.email-list-search{
+  padding-top: 11px;
+  font-size: 25px;
+}
+
+.email-list-back{
+  padding-top: 6px;
+  font-size: 35px;
+}
+
+nav#email-list-nav > div {
+  float: left;
+  display: inline;
+}
+
+nav#email-list-nav a{
+  color: #ffffff;
+}
+
+.email-list-search{
+  float: right !important;
+}
+/* Title */
+.email-list-title{
+  text-align: center;
+  font-size: 175%;
+  margin: 15px 0;
+}
+
+.email-list-sort-table{
+  margin-left: 20px;
+}
+
+.email-list-sort-table select {
+  width: 75px;
+  margin-bottom: 20px;
+}
+
+.email-list-table{
+  padding: 20px;
+}
+
+.email-list-table td{
+  padding: 10px;
+  text-align: left;
+}
+
+.email-list-table td:nth-of-type(2){
+  text-align: right;
+  padding-right: 30px;
+}
+
+.email-list-table a{
+  text-align: right;
+  padding-right: 30px;
+  color: #189bd0;
+  cursor: pointer;
+  text-decoration: underline;;
+}
+
+.email-list-table thead{
+  border-bottom: 1px solid #d3d3d3;
+}
+
+/* NOTE:  STYLES FOR THE UPLOAD BUTTON */
+input#file {
+  margin-left: 100px;
+  padding: 120px 0 0 0;
+  height: 100px;
+  width: 50px;
+  overflow: hidden;
+  background: url("../images/uploadIcon.png") center no-repeat;
+  background-size: contain;
 }

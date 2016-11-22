@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
-  <link rel="stylesheet" type="text/css" href="../static/css/input.css">
+
+
+
+
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
@@ -27,13 +30,13 @@
 
   <div class="container">
     <div class="send-email has-text-centered">
-      <span id="result">{{ data }}</span>
+      <span id="result">{{ msg }}</span>
       <form method="post" action="\sendEmail"  novalidate>
         <label for="current-email" class="is-inline">To: </label>
         <div class="email-container">
-          <input type="email" name="sendemail" id="current-email "class="type-email" placeholder="E-Mail Address...">
+          <input type="email" name="send-email" id="current-email "class="type-email" placeholder="E-Mail Address...">
           <div class="email-fav">
-            <input type="checkbox" name="radio"><label for="radio" id="radio-text">Add to E-Mail list</label>
+            <input type="checkbox" name="send-radio"><label for="radio" id="radio-text">Add to E-Mail list</label>
           </div>
         </div>
         <button type="submit" class="is-inline">Send</button>
@@ -58,15 +61,25 @@
           <option value="favourites" class="fa">&#xf005; Favourites</option>
         </select>
       </div>
+
       <div class="portfolio-content">
-        <div class = "box"ondrop="drop(event)" ondragover="allowDrop(event)">
-          <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <a href="http://www.w3schools.com"><img src="../static/images/play.png" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
-         <img src="../static/images/folder.png" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
-         <img src="../static/images/folder.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
-        </div>
+        <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
+         <img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
+         <img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
+         <img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31">
+
+</div>
+</div>
+
+
       </div>
     </div>
+
+    <aside class="new-block">
+      <a href="#">Create new Bloc</a>
+    </aside>
 
       <div class="submitted-blocs">
         {% block db_results %}
@@ -80,7 +93,7 @@
         {%endfor%}
         {% endblock %}
       </div>
-    </div>
+
 
     <div class="modal-popups">
       <div id="popup" class="popup">
@@ -97,11 +110,15 @@
           <div class="popup-body">
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
-              <textarea type="text" id="link" placeholder="Link preview..."></textarea>
-              <!-- <img id="uploadPreview" class="is-inline" style="width: 200px; height: 100px;" />
-              <input id="file" type="file" class=""onchange="PreviewImage()"/> -->
-              <button type="button" id="link-btn"name="link-button">Personalise Bloc Cover Image</button>
+
+
+              <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
+              <img id="uploadPreview" class="is-inline">
+              <input id="file" type="file" class=""onchange="PreviewImage()"/>
+              <button type="button" id="link-btn"name="link-button">Customize</button>
+
               <input name="title" type="text" id="title" placeholder="Bloc Title...">
+
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
               <label for="category">Category: </label>
               <select class="category fa" id="category" name="category">
@@ -138,12 +155,10 @@
         </div>
       </div>
     </div>
-    </div>
-    <aside class="new-block">
-      <a href="#">Create new Bloc</a>
-    </aside>
 
-    <script type="text/javascript" src="static/js/emailValidation.js"></script>
+    </div>
+
+
     <script type="text/javascript" src="static/js/modal.js"></script>
     <script type="text/javascript" src="static/js/imagePreview.js"></script>
     <script type="text/javascript" src="static/js/drag.js"></script>
