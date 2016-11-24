@@ -2,10 +2,19 @@ from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
 import os, re
+from werkzeug.utils import secure_filename
+
 
 app = Flask(__name__, static_url_path="/static")
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(APP_ROOT, 'uploads')
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
 
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
@@ -31,7 +40,6 @@ def upload_bloc():
         result_list.append(current_list)
 
     return render_template('index.html', result=result_list)
-
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
@@ -94,3 +102,29 @@ if __name__ == "__main__":
     database.populate_tables()
     database.select_all()
     app.run(debug=True)
+
+def allowed_file(filename):
+    ext = filename.rsplit('.', 1)[1]
+    print(ext)
+    return '.' in filename and ext in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET','POST'])
+def upload_file():
+    msg = ''
+    if request.method == 'POST':
+        msg = 'ok'
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            msg = 'no file given'
+        else:
+            file = request.files['file']
+            # if user does not select file, browser also
+            # submit a empty part without filename
+            if file.filename == '':
+                msg = 'no file name'
+            elif file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filePath)
+                msg = filePath
+    return render_template('Files.html', msg=msg)
