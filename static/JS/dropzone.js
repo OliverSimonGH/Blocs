@@ -1765,3 +1765,7 @@
   contentLoaded(window, Dropzone._autoDiscoverFunction);
 
 }).call(this);
+
+myDropzone.on("complete", function(file) {
+  myDropzone.removeFile(file);
+});
