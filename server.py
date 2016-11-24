@@ -4,16 +4,14 @@ import sqlite3
 import os, re
 from werkzeug.utils import secure_filename
 
+app = Flask(__name__)
+UPLOAD_PATH = 'static/uploads'
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 
-app = Flask(__name__, static_url_path="/static")
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(APP_ROOT, 'uploads')
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
 #Home section - Adding blocks to database and removing from database
