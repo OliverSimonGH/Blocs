@@ -93,13 +93,6 @@ def settings():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-if __name__ == "__main__":
-    database.delete_tables()
-    database.create_tags()
-    database.create_tables()
-    database.populate_tables()
-    database.select_all()
-    app.run(debug=True)
 
 @app.route('/')
 def index():
@@ -113,3 +106,21 @@ def correctFormat(link):
     if (link.find('.jpg') > -1 or link.find('.png') > -1 or link.find('.gif') > -1 or link.find('.jpeg') > -1):
         return True;
     return False;
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        upload_path = '{}/{}'.format(UPLOAD_FOLDER, file.filename)
+        file.save(upload_path)
+        return 'ok'
+
+
+
+if __name__ == "__main__":
+    database.delete_tables()
+    database.create_tags()
+    database.create_tables()
+    database.populate_tables()
+    database.select_all()
+    app.run(debug=True)
