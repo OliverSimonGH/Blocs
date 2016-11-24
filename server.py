@@ -108,3 +108,8 @@ def index():
         if (isImageFormat(filename)):
             all_image_files.append(filename)
     return render_template('index.html', **locals());
+
+def correctFormat(link):
+    if (link.find('.jpg') > -1 or link.find('.png') > -1 or link.find('.gif') > -1 or link.find('.jpeg') > -1):
+        return True;
+    return False;
