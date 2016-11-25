@@ -506,7 +506,10 @@ input#file {
 }
 
 #dzMsg {
-  background-color: grey;
-  color: white;
-  font-size: 100px;
+
 }
+
+/*.dropIcon {
+  width: 200px;
+  height: 200px;
+}*/
