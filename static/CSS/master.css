@@ -12,7 +12,7 @@
 html, body{
   height: 100%;
   width: 100%;
-  
+
 }
 
 /* Navbar */
@@ -503,4 +503,10 @@ input#file {
   overflow: hidden;
   background: url("../images/uploadIcon.png") center no-repeat;
   background-size: contain;
+}
+
+#dzMsg {
+  background-color: grey;
+  color: white;
+  font-size: 100px;
 }
