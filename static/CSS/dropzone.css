@@ -231,20 +231,24 @@ background-position: center;*/
         -o-transition: opacity 0.2s linear;
         transition: opacity 0.2s linear; }
     .dropzone .dz-preview .dz-remove {
-      font-size: 15px;
+      font-size: 30px;
       text-align: center;
       display: block;
       cursor: pointer;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      letter-spacing: 0.5px;
-      font-weight: lighter;
+      /*border-radius: 30px;
+      font-weight: lighter;*/
       background-color: #0095ff;
       color: #ffffff;
-    margin-top: 30px;}
-      .dropzone .dz-preview .dz-remove:hover {
-        background-color: red;}
+    margin-top: 30px;
+    background: url("../images/xx.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+      /*.dropzone .dz-preview .dz-remove:hover {
+
+      }*/
     .dropzone .dz-preview:hover .dz-details {
       opacity: 1; }
     .dropzone .dz-preview .dz-details {
