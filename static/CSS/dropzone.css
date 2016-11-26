@@ -2,6 +2,9 @@
  * The MIT License
  * Copyright (c) 2012 Matias Meno <m@tias.me>
  */
+ * {
+   font-weight: lighter;
+ }
 @-webkit-keyframes passing-through {
   0% {
     opacity: 0;
@@ -176,10 +179,10 @@
 
 .dropzone {
   min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  border-style: dashed;
-  background: white;
+  background: #646C7F;
   padding: 20px 20px;
+  box-shadow: 10px 10px 5px #888888;
+
 /*background: url("../images/bg1.jpg");
 background-position: center;*/
 }
@@ -197,14 +200,17 @@ background-position: center;*/
       opacity: 0.5; }
   .dropzone .dz-message {
     text-align: center;
-  ;}
-  .dropzone .dz-message, h4 {
-    font-size: 30px;
-    color: #008ae6;
   }
-  .dropzone .dz-message, span {
+
+  #mainDz {
+    font-size: 30px;
+    color:rgb(143, 219, 245);
+    font-weight: lighter;
+  }
+  #subDz{
     font-size: 10px;
     font-weight: lighter;
+    color: white;
   }
   .dropzone .dz-preview {
     position: relative;
@@ -218,12 +224,12 @@ background-position: center;*/
         opacity: 1; }
     .dropzone .dz-preview.dz-file-preview .dz-image {
       border-radius: 20px;
-      background: #999;
+      background: #646C7F;
       background: linear-gradient(to bottom, #eee, #ddd); }
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: white; }
+      background: #646C7F; }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;
