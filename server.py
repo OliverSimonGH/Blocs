@@ -2,10 +2,17 @@ from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
 import os, re
+from werkzeug.utils import secure_filename
 
-app = Flask(__name__, static_url_path="/static")
+app = Flask(__name__)
+UPLOAD_PATH = 'static/uploads'
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
+
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
+
+
 
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
@@ -31,7 +38,6 @@ def upload_bloc():
         result_list.append(current_list)
 
     return render_template('index.html', result=result_list)
-
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
@@ -81,11 +87,35 @@ def profile():
 
 @app.route("/settings")
 def settings():
-    return render_template('settings.html')
+     return render_template('settings.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
+
+@app.route('/')
+def index():
+    all_image_files = []
+    for filename in os.listdir(UPLOAD_FOLDER):
+        if (isImageFormat(filename)):
+            all_image_files.append(filename)
+    return render_template('index.html', **locals());
+
+def correctFormat(link):
+    if (link.find('.jpg') > -1 or link.find('.png') > -1 or link.find('.gif') > -1 or link.find('.jpeg') > -1):
+        return True;
+    return False;
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        upload_path = '{}/{}'.format(UPLOAD_FOLDER, file.filename)
+        file.save(upload_path)
+        return 'ok'
+
+
 
 if __name__ == "__main__":
     database.delete_tables()

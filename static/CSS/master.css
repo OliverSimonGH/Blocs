@@ -12,6 +12,7 @@
 html, body{
   height: 100%;
   width: 100%;
+
 }
 
 /* Navbar */
@@ -510,3 +511,12 @@ input#file {
   background: url("../images/uploadIcon.png") center no-repeat;
   background-size: contain;
 }
+
+#dzMsg {
+
+}
+
+/*.dropIcon {
+  width: 200px;
+  height: 200px;
+}*/
