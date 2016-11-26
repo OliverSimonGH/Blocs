@@ -179,7 +179,7 @@
 
 .dropzone {
   min-height: 150px;
-  background: #646C7F;
+  background: rgb(78, 81, 90);
   padding: 20px 20px;
   box-shadow: 10px 10px 5px #888888;
 
@@ -204,13 +204,13 @@ background-position: center;*/
 
   #mainDz {
     font-size: 30px;
-    color:rgb(143, 219, 245);
+    color:rgb(135, 224, 255);
     font-weight: lighter;
   }
   #subDz{
-    font-size: 10px;
+    font-size: 15px;
     font-weight: lighter;
-    color: white;
+    color: #d9dfe0;
   }
   .dropzone .dz-preview {
     position: relative;
@@ -229,7 +229,7 @@ background-position: center;*/
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: #646C7F; }
+      background: rgb(78, 81, 90); }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;
@@ -245,9 +245,9 @@ background-position: center;*/
       /*border-radius: 30px;
       font-weight: lighter;*/
       background-color: #0095ff;
-      color: #ffffff;
+      color: black;
     margin-top: 30px;
-    background: url("../images/xx.png");
+    background: url("../images/close.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
