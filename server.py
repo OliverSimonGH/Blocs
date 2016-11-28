@@ -40,21 +40,43 @@ def sendEmail():
     check = bool(email_radio)
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
-    if email_sent == "":
-        msg = "Please enter an e-mail address"
+    conn = sqlite3.connect(DATABASE)
+    # http://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows
+    conn.row_factory = lambda cursor, row: row[0]
+    cur = conn.cursor()
+    cur.execute("SELECT emailAddress FROM Emails")
+    data = cur.fetchall()
 
-    elif not email_val.match(email_sent):
+    if email_sent == "" or not email_val.match(email_sent):
         msg = "Please enter a valid e-mail address"
 
-    else:
-        # store data into database
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        cur.execute("INSERT INTO Emails ('emailAddress', 'emailList')\
-                     VALUES (?,?)", (email_sent, check))
-        conn.commit()
+    elif email_sent in data:
+        print("Email already exists")
+        if check == 0:
+            cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
+        elif check == 1:
+            cur.execute("UPDATE Emails SET emailList=1 WHERE emailAddress=?",(email_sent,))
         msg = "You have sent an e-mail to: " + email_sent
+        #Send email
+    else:
+        # store new email sent into the database
+        database.create_email(email_sent, check)
+        msg = "You have sent an e-mail to: " + email_sent
+        # send email
+
+    conn.commit()
+    conn.close()
     return render_template("index.html", msg=msg)
+
+@app.route('/deleteEmail', methods=['POST'])
+def delete_email():
+    email = request.form.get('email_add')
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE Emails SET emailList=0 WHERE emailList=1 and emailAddress=?", (email,))
+    conn.commit()
+    conn.close()
+    return redirect("/emails")
 
 @app.route("/readBloc", methods=['GET'])
 def read_bloc():

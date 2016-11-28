@@ -8,7 +8,7 @@ def create_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute('CREATE TABLE IF NOT EXISTS `Emails` (\
     `emailId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-    `emailAddress` TEXT NOT NULL UNIQUE,\
+    `emailAddress` TEXT NOT NULL,\
     `emailList` INTEGER);')
 
     conn.execute('CREATE TABLE IF NOT EXISTS Blocs (\
@@ -48,6 +48,7 @@ def delete_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute("DROP TABLE IF EXISTS Blocs;")
     conn.execute("DROP TABLE IF EXISTS Emails;")
+    conn.execute("DROP TABLE IF EXISTS Tags;")
     conn.commit()
     conn.close()
 
@@ -80,3 +81,10 @@ def check_param_value(parameter):
         return 4
     elif parameter == "favourites":
         return 5
+
+def create_email(email_sent, check):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("INSERT INTO Emails (`emailAddress`, `emailList`) VALUES (?,?)", (email_sent, check))
+    conn.commit()
+    conn.close()
