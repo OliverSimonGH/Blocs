@@ -97,7 +97,6 @@
         {% endblock %}
       </div>
 
-
     <div class="modal-popups">
       <div id="popup" class="popup">
         <div class="popup-content">
@@ -113,8 +112,6 @@
           <div class="popup-body">
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
-
-
               <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
               <img id="uploadPreview" class="is-inline">
               <input id="file" type="file" class=""onchange="PreviewImage()"/>
@@ -131,10 +128,12 @@
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
+              <input type="submit">
+            </form>
           </div>
           <div class="popup-footer">
             <button type="button" id="cancel">Cancel</button>
-            <button type="submit" id="submit">Save</button>
+            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </form>
         </div>
@@ -159,6 +158,9 @@
       </div>
     </div>
 
+      <aside class="new-block">
+        <a>Create new Bloc</a>
+      </aside>
     </div>
 
     <script type="text/javascript" src="static/js/dropzone.min.js"></script>

@@ -12,13 +12,11 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
 
-
-
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
 @app.route("/home")
 def home():
-    #database.select_all()
+    database.select_all()
     return render_template('index.html')
 
 @app.route("/uploadBloc", methods=['POST'])
@@ -93,7 +91,6 @@ def settings():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-
 @app.route('/')
 def index():
     all_image_files = []
@@ -114,8 +111,6 @@ def upload():
         upload_path = '{}/{}'.format(UPLOAD_FOLDER, file.filename)
         file.save(upload_path)
         return 'ok'
-
-
 
 if __name__ == "__main__":
     database.delete_tables()

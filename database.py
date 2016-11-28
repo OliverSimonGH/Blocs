@@ -29,18 +29,7 @@ def create_tags():
 
 def populate_tables():
     conn = sqlite3.connect(DATABASE)
-    conn.execute("INSERT INTO Tags (`Title`) VALUES('All')")
-    conn.execute("INSERT INTO Tags (`Title`) VALUES('Video')")
-    conn.execute("INSERT INTO Tags (`Title`) VALUES('Web')")
-    conn.execute("INSERT INTO Tags (`Title`) VALUES('Images')")
-    conn.execute("INSERT INTO Tags (`Title`) VALUES('Favourites')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('oliver@hotmail.co.uk', '1')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example@hotmail.co.uk', '1')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example1@hotmail.co.uk', '1')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example2@hotmail.co.uk', '1')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake@yahoo.com', '1')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake1@yahoo.com', '0')")
-    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake2@yahoo.com', '0')")
+    conn.execute("INSERT INTO Blocs (`Title`,`Description`, `Link`) VALUES('First bloc', 'Second bloc', 'This is a description');")
     conn.commit()
     conn.close()
 
@@ -80,3 +69,13 @@ def check_param_value(parameter):
         return 4
     elif parameter == "favourites":
         return 5
+    print(cur.fetchall())
+    conn.close()
+
+def write_bloc_to_database(parameters):
+    print("Called")
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("INSERT INTO Blocs(`Title`, `Description`, `Link`) VALUES(?, ?, ?)", parameters)
+    conn.commit()
+    conn.close()
