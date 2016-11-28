@@ -4,7 +4,7 @@ import sqlite3
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-DATABASE = 'blocs.db'
+DATABASE = 'Blocs.db'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 conn = sqlite3.connect(DATABASE)
