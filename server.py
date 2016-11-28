@@ -23,7 +23,7 @@ def home():
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
+    parameters = [request.form["title"], request.form["notes"], request.form["url"], request.form["category"]]
     database.write_bloc_to_database(parameters)
     db_result = database.select_all()
     result_list = []
