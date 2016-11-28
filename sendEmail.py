@@ -13,6 +13,7 @@ cur.execute("SELECT * FROM Blocs")
 blocs = cur.fetchall()
 print("Getting blocs from server...")
 print(blocs)
+print(len(blocs))
 
 for record in blocs:
     name = record[1]
