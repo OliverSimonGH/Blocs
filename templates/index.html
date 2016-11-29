@@ -43,13 +43,7 @@
 
     <div class="links-to-send">
       <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
-      <form class="dropzone dz-clickable" method="POST" action="/upload">
-      <div class="dz-message">
-      <h4 id="mainDz">Drag Files to Upload</h4>
-      <span id="subDz">Or click to browse</span>
-      </div>
-      </form>    </br></br>
-      <!-- <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
+      <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)">
         <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
       </div>
     </div>
@@ -124,15 +118,12 @@
           <div class="popup-body">
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
-
-
               <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
               <img id="uploadPreview" class="is-inline">
               <input id="file" type="file" class=""onchange="PreviewImage()"/>
               <button type="button" id="link-btn"name="link-button">Customize</button>
 
               <input name="title" type="text" id="title" placeholder="Bloc Title...">
-
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
               <label for="category">Category: </label>
               <select class="category fa" id="category" name="category">
