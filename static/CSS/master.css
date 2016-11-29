@@ -112,23 +112,7 @@ textarea{
 }
 
 
-/* Text to create a new block */
-
-.new-block{
-  padding: 10px 15px;
-  border-radius: 5px;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-  width: 150px;
-  background-color: #0095ff;
-  color: #ffffff;
-}
-
-
-.new-block a{
-  color: #fff;
-  letter-spacing: 1px;
-}
+/**/
 
 /* Background of popup, will make it darker */
 .popup {
@@ -333,6 +317,10 @@ img#uploadPreview{
   font-size: 16px;
 }
 
+.portfolio-title{
+  margin-bottom: 20px;
+}
+
 .drag-links{
   margin: 20px auto 50px auto;
   border: 2px dashed #b9afaf;
@@ -530,6 +518,25 @@ nav#email-list-nav a{
   float: left;
   display: inline;
 }
+
+.individual-blocs{
+  height: 100px;
+  width: 200px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  float: left;
+  display: inline-block;
+  margin: 0 5px 10px 5px;
+}
+
+
+
+#box.box{
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 
 /* NOTE:  STYLES FOR THE UPLOAD BUTTON */
 input#file {

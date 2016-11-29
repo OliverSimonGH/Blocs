@@ -1,7 +1,6 @@
 // Get both popups that will be used.
 var popupOne = document.getElementsByClassName('popup')[0];
 var popupTwo = document.getElementsByClassName('popup')[1];
-var popupThree = document.getElementsByClassName('popup')[2];
 
 //Gets the link for the popups.
 var linkFirstPopup = document.getElementsByClassName('new-block')[0];
@@ -9,7 +8,6 @@ var linkFirstPopup = document.getElementsByClassName('new-block')[0];
 //Buttons to close popups.
 var cancelOne = document.getElementById("cancel");
 var cancelTwo = document.getElementById("cancel1");
-var cancelThree = document.getElementById("cancel2");
 
 //Button to open the second popup.
 var BtnSecondPopup = document.getElementById('link-btn');
@@ -19,7 +17,7 @@ var unFavStar = document.getElementById('unfav');
 var favStar = document.getElementById('fav');
 
 //Profile Popup
-var profile = document.getElementById('profile')
+var profile = document.getElementById('profile');
 
 //First two function are to display and cose first popup.
 function display() {
@@ -39,14 +37,6 @@ function close1() {
   popupTwo.style.display = "none";
 };
 
-function display2() {
-  popupThree.style.display = "block";
-};
-
-function close2() {
-  popupThree.style.display = "none";
-};
-
 // function fav() {
 //   unFavStar.style.display = "none";
 //   favStar.style.display = "block";
@@ -60,16 +50,16 @@ function close2() {
 window.onclick = function(event) {
     if (event.target == popupOne) {
         popupOne.style.display = "none";
-    }
+    };
 
     if (event.target == popupTwo) {
         popupTwo.style.display = "none";
-    }
+    };
 
     if (event.target == popupThree) {
         popupThree.style.display = "none";
-    }
-}
+    };
+};
 
 //Toggles font betwwen clicks.
 // unFavStar.addEventListener("click", fav);
@@ -79,8 +69,8 @@ window.onclick = function(event) {
 linkFirstPopup.addEventListener("click", display);
 cancelOne.addEventListener("click", close);
 
-profile.addEventListener("click", display2);
-cancelThree.addEventListener("click", close2);
+profile.addEventListener("click", display1);
+cancelTwo.addEventListener("click", close1);
 
 //Listens for click event for the second popup, open and close.
 // BtnSecondPopup.addEventListener("click", display1);
