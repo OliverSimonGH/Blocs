@@ -2,29 +2,31 @@ import os
 from flask import Flask, redirect, request, render_template
 import sqlite3
 
-DATABASE = 'Blocs.db'
+DATABASE = 'blocs.db'
 
 def create_tables():
     conn = sqlite3.connect(DATABASE)
-    conn.execute('CREATE TABLE IF NOT EXISTS `Emails` (\
+    conn.execute("CREATE TABLE IF NOT EXISTS `Emails` (\
     `emailId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-    `emailAddress` TEXT NOT NULL,\
-    `emailList` INTEGER);')
+    `emailAddress` TEXT NOT NULL UNIQUE,\
+    `emailList` INTEGER);")
 
-    conn.execute('CREATE TABLE IF NOT EXISTS Blocs (\
-    `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-    `Title` TEXT NOT NULL,\
-    `Description` TEXT NOT NULL,\
-    `Link` TEXT NOT NULL, \
-    `TagID` INTEGER NOT NULL,\
-    FOREIGN KEY(TagID) REFERENCES Tags(ID));')
+    conn.execute("CREATE TABLE IF NOT EXISTS `Blocs` (\
+    `blocid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+    `weburl` TEXT NOT NULL,\
+    `imgurl` TEXT NOT NULL,\
+    `title` TEXT NOT NULL, \
+    `notes` TEXT NOT NULL,\
+    `category` TEXT NOT NULL);")
+    # `TagID` INTEGER NOT NULL,\
+    # FOREIGN KEY(TagID) REFERENCES Tags(ID));')
 
-    conn.execute('CREATE TABLE IF NOT EXISTS `Logs` (\
+    conn.execute("CREATE TABLE IF NOT EXISTS `Logs` (\
     `logId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
     `emailAddress` TEXT NOT NULL,\
     `sender` TEXT NOT NULL,\
     `date` TEXT NOT NULL,\
-    `time` TEXT NOT NULL);')
+    `time` TEXT NOT NULL);")
     conn.close()
 
 def create_tags():
@@ -36,7 +38,18 @@ def create_tags():
 
 def populate_tables():
     conn = sqlite3.connect(DATABASE)
-    # conn.execute("INSERT INTO Blocs (`Title`,`Description`, `Link`) VALUES('First bloc', 'Second bloc', 'This is a description');")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('All')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Video')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Web')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Images')")
+    conn.execute("INSERT INTO Tags (`Title`) VALUES('Favourites')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('oliver@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example1@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('example2@hotmail.co.uk', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake@yahoo.com', '1')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake1@yahoo.com', '0')")
+    conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake2@yahoo.com', '0')")
     conn.commit()
     conn.close()
 
@@ -44,7 +57,6 @@ def delete_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute("DROP TABLE IF EXISTS Blocs;")
     conn.execute("DROP TABLE IF EXISTS Emails;")
-    conn.execute("DROP TABLE IF EXISTS Tags;")
     conn.commit()
     conn.close()
 
@@ -57,6 +69,14 @@ def select_all():
     print(result)
     conn.close()
     return result
+
+def update_table(parameters):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE Blocs SET Title=?, Description=?, Link=? WHERE ID=?", (parameters[0], parameters[1], parameters[2], parameters[3]))
+    conn.commit()
+    conn.close()
+
 
 def write_bloc_to_database(parameters):
     conn = sqlite3.connect(DATABASE)

@@ -10,32 +10,33 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 
 app.secret_key = "this_is_a_secret"
-DATABASE = "Blocs.db"
+DATABASE = "blocs.db"
 
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
 @app.route("/home")
 def home():
-    database.select_all()
-    return render_template('index.html')
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM `Blocs`")
+    data = cur.fetchall()
+    return render_template('index.html', data=data)
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    parameters = [request.form["title"], request.form["notes"], request.form["url"], request.form["category"]]
-    database.write_bloc_to_database(parameters)
-    db_result = database.select_all()
-    result_list = []
-    current_list = []
+    url = request.form.get('url')
+    imgurl = request.form.get('imgurl')
+    title = request.form.get('title')
+    notes = request.form.get('notes')
+    category = request.form.get('category')
 
-    for row in db_result:
-        current_list.append(row[0])
-        current_list.append(row[1])
-        current_list.append(row[2])
-        current_list.append(row[3])
-        current_list.append(row[4])
-        result_list.append(current_list)
-
-    return render_template('index.html', result=result_list)
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("INSERT INTO `Blocs`(`weburl`, `imgurl`, `title`, `notes`, `category`)\
+                VALUES(?,?,?,?,?)", (url, imgurl, title, notes, category))
+    conn.commit()
+    conn.close()
+    return redirect("/")
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
@@ -58,7 +59,6 @@ def sendEmail():
         print("Email already exists")
         if check == 0:
             cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
-
         elif check == 1:
             cur.execute("UPDATE Emails SET emailList=1 WHERE emailAddress=?",(email_sent,))
         msg = "You have sent an e-mail to: " + email_sent
@@ -134,6 +134,12 @@ def upload():
         upload_path = '{}/{}'.format(UPLOAD_FOLDER, file.filename)
         file.save(upload_path)
         return 'ok'
+
+@app.route('/editBloc', methods=['POST'])
+def editBlocForm():
+    parameters = [request.form["title"], request.form["link"], request.form["description"], request.form["idValue"]]
+    database.update_table(parameters)
+    return redirect('/')
 
 if __name__ == "__main__":
     database.delete_tables()

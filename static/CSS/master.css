@@ -529,16 +529,12 @@ nav#email-list-nav a{
   margin: 0 5px 10px 5px;
 }
 
-
-
 #box.box{
   border: none;
   padding: 0;
   margin: 0;
 }
 
-
-/* NOTE:  STYLES FOR THE UPLOAD BUTTON */
 input#file {
   margin-left: 100px;
   padding: 120px 0 0 0;
@@ -547,6 +543,16 @@ input#file {
   overflow: hidden;
   background: url("../images/uploadIcon.png") center no-repeat;
   background-size: contain;
+}
+
+.blocStyle {
+  width: 88px;
+  height: 88px;
+}
+
+.text-right {
+  float: right;
+  margin-right: 1%;
 }
 
 #dzMsg {
