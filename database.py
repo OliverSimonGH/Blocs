@@ -61,6 +61,14 @@ def select_all():
    conn.close()
    return result
 
+def update_table(parameters):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE Blocs SET Title=?, Description=?, Link=? WHERE ID=?", (parameters[0], parameters[1], parameters[2], parameters[3]))
+    conn.commit()
+    conn.close()
+
+
 def write_bloc_to_database(parameters):
    conn = sqlite3.connect(DATABASE)
    cur = conn.cursor()

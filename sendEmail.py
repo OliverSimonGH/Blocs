@@ -14,16 +14,30 @@ msg['From'] = "bradye@cardiff.ac.uk"
 msg['To'] = "BlocsTest@outlook.com"
 
 # Create the body of the message (a plain-text and an HTML version).
-html = """\
-<html>
-  <head></head>
-  <body>
 
-  </body>
-</html>
-"""
+#
+# html = """\
+# <html>
+#   <head></head>
+#   <body>
+#     <table>
+#
+#     </table>
+#   </body>
+# </html>
+# """
 
-msg.attach(MIMEText(html, 'html'))
+firstHTML = "<html> <head></head> <body><table></table>"
+bloc_one = "<div>This is the bloc title</div>"
+secondHTML = "</body></html>"
+
+new_html = firstHTML + bloc_one + secondHTML
+
+#
+# firstHTML.append(bloc_one)
+# firstHTML.append(secondHTML)
+
+msg.attach(MIMEText(new_html, 'html'))
 print(msg)
 
 # May want to add some error checks here

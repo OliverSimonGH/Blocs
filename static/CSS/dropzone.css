@@ -2,6 +2,9 @@
  * The MIT License
  * Copyright (c) 2012 Matias Meno <m@tias.me>
  */
+ * {
+   font-weight: lighter;
+ }
 @-webkit-keyframes passing-through {
   0% {
     opacity: 0;
@@ -171,15 +174,20 @@
     -o-transform: scale(1);
     transform: scale(1); } }
 .dropzone, .dropzone * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 .dropzone {
   min-height: 150px;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  background: white;
-  padding: 20px 20px; }
+  background: rgb(78, 81, 90);
+  padding: 20px 20px;
+  box-shadow: 10px 10px 5px #888888;
+
+/*background: url("../images/bg1.jpg");
+background-position: center;*/
+}
   .dropzone.dz-clickable {
-    cursor: pointer; }
+    cursor: pointer;}
     .dropzone.dz-clickable * {
       cursor: default; }
     .dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
@@ -192,7 +200,18 @@
       opacity: 0.5; }
   .dropzone .dz-message {
     text-align: center;
-    margin: 2em 0; }
+  }
+
+  #mainDz {
+    font-size: 30px;
+    color:rgb(135, 224, 255);
+    font-weight: lighter;
+  }
+  #subDz{
+    font-size: 15px;
+    font-weight: lighter;
+    color: #d9dfe0;
+  }
   .dropzone .dz-preview {
     position: relative;
     display: inline-block;
@@ -205,12 +224,12 @@
         opacity: 1; }
     .dropzone .dz-preview.dz-file-preview .dz-image {
       border-radius: 20px;
-      background: #999;
+      background: #646C7F;
       background: linear-gradient(to bottom, #eee, #ddd); }
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: white; }
+      background: rgb(78, 81, 90); }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;
@@ -218,13 +237,24 @@
         -o-transition: opacity 0.2s linear;
         transition: opacity 0.2s linear; }
     .dropzone .dz-preview .dz-remove {
-      font-size: 14px;
+      font-size: 30px;
       text-align: center;
       display: block;
       cursor: pointer;
-      border: none; }
-      .dropzone .dz-preview .dz-remove:hover {
-        text-decoration: underline; }
+      border: none;
+      /*border-radius: 30px;
+      font-weight: lighter;*/
+      background-color: #0095ff;
+      color: black;
+    margin-top: 30px;
+    background: url("../images/close.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+      /*.dropzone .dz-preview .dz-remove:hover {
+
+      }*/
     .dropzone .dz-preview:hover .dz-details {
       opacity: 1; }
     .dropzone .dz-preview .dz-details {
