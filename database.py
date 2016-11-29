@@ -18,6 +18,13 @@ def create_tables():
     `Link` TEXT NOT NULL, \
     `TagID` INTEGER NOT NULL,\
     FOREIGN KEY(TagID) REFERENCES Tags(ID));')
+
+    conn.execute('CREATE TABLE IF NOT EXISTS `Logs` (\
+    `logId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+    `emailAddress` TEXT NOT NULL,\
+    `sender` TEXT NOT NULL,\
+    `date` TEXT NOT NULL,\
+    `time` TEXT NOT NULL);')
     conn.close()
 
 def create_tags():

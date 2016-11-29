@@ -438,7 +438,8 @@ table th {
 
 .is-inline-flex {
   display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  display: -ms-inline-flex
+  ;
   display: inline-flex;
 }
 

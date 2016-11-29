@@ -12,13 +12,11 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
 
-
-
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
 @app.route("/home")
 def home():
-    #database.select_all()
+    # database.select_all()
     return render_template('index.html')
 
 @app.route("/uploadBloc", methods=['POST'])
@@ -60,6 +58,7 @@ def sendEmail():
         print("Email already exists")
         if check == 0:
             cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
+
         elif check == 1:
             cur.execute("UPDATE Emails SET emailList=1 WHERE emailAddress=?",(email_sent,))
         msg = "You have sent an e-mail to: " + email_sent

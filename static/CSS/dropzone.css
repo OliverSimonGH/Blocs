@@ -178,10 +178,11 @@
 }
 
 .dropzone {
-  min-height: 150px;
-  background: rgb(78, 81, 90);
-  padding: 20px 20px;
-  box-shadow: 10px 10px 5px #888888;
+  display: block;
+  padding: 20px;
+  margin: 20px;
+  min-height: 132px;
+  border: 1px solid #d3d3d3;
 
 /*background: url("../images/bg1.jpg");
 background-position: center;*/

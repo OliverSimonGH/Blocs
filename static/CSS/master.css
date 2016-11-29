@@ -155,7 +155,7 @@ textarea{
   text-align: center;
   background-color: #ffffff;
   width: 680px;
-  height: 490px;
+  height: 465px;
   border: 2px solid #d3d3d3;
 }
 
@@ -164,6 +164,8 @@ textarea{
   position: relative;
   border-bottom: 2px solid #d3d3d3;
   height: 50px;
+  padding: 13px;
+  font-size: 110%;
 }
 
 /* Icon positioning */
@@ -207,12 +209,12 @@ textarea{
   background-color: #005aff;
 }
 
-.popup-body input#url, #url1{
+.popup-body input#url, .popup-body input#imgurl{
   width:100%;
 }
 
 .popup-body textarea#link, textarea#link1{
-  height: 100px;;
+  height: 100px;
   width: 40%;
   border-style: dashed;
   vertical-align: top;
@@ -220,13 +222,12 @@ textarea{
 }
 
 .popup-body input#title{
-  width: 80%;
+  width: 100%;
 }
 
 .popup-body textarea#notes{
-  width: 80%;
-  height: 50px;
-  vertical-align: top;
+  width: 100%;
+  height: 60px;
 }
 
 .popup-body label{
@@ -279,13 +280,14 @@ select{
   color: #ff0000;
 }
 
-#uploadPreview {
+img#uploadPreview{
+  position: relative;
+  top: -20px;
   width: 200px;
   height: 100px;
-  border-width:2px;
-  border-color: rgba(0,0,0,0.2);
 
 }
+
 /* Second modal for link preview */
 #popup1 .popup {
   display: none;
@@ -296,7 +298,7 @@ select{
 }
 
 /* Centers the text*/
-#popup1 .popup-header{
+#popup1.popup-header{
   padding: 13px;
   font-size: 120%;
 }
@@ -315,6 +317,10 @@ select{
 #popup1 textarea#link1{
   width: 65%;
   height: 100px;
+}
+
+#popup2 input{
+  width: 100%;
 }
 
 .fa-folder, .fa-arrow-circle-right{
@@ -437,8 +443,13 @@ font-size: 16px;
 }
 
 .email-list-search{
-  padding-top: 11px;
-  font-size: 25px;
+  padding: 8px;
+  height: 50px;
+}
+
+.email-list-search input{
+  width: 200px;
+  height: 35px;
 }
 
 .email-list-back{
@@ -474,21 +485,21 @@ nav#email-list-nav a{
   margin-bottom: 20px;
 }
 
-#email-list-table{
+.email-list-table{
   padding: 20px;
 }
 
-#email-list-table td{
+.email-list-table td{
   padding: 10px;
   text-align: left;
 }
 
-#email-list-table td:nth-of-type(2){
+.email-list-table td:nth-of-type(2){
   text-align: right;
   padding-right: 30px;
 }
 
-#email-list-table button{
+.email-list-table button{
   text-align: right;
   margin-right: 30px;
   color: #189bd0;
@@ -497,8 +508,27 @@ nav#email-list-nav a{
   background-color: transparent;
 }
 
-#email-list-table thead{
+.email-list-table thead{
   border-bottom: 1px solid #d3d3d3;
+}
+
+#logs.email-list-table td{
+  width: 15%;
+  text-align: left;
+}
+
+#logs.email-list-table td:nth-of-type(1){
+  width: 25%;
+}
+
+#logs.email-list-table td:nth-of-type(5){
+  width: 35%;
+  text-align: right;
+}
+
+.cat label, .cat select{
+  float: left;
+  display: inline;
 }
 
 /* NOTE:  STYLES FOR THE UPLOAD BUTTON */

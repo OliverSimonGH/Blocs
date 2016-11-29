@@ -15,7 +15,7 @@
       <img id="cog" src="/static/images/cog.png" alt=""/>
       <div id="dropdown-content">
         <h3 id="nav-username"> Insert name here </h3>
-        <a href="/profile"> Profile </a>
+        <a href="#" id="profile"> Profile </a>
         <a href="/settings"> Settings </a>
         <a href="/logs"> Logs </a>
         <a href="/emails"> Email list </a>
@@ -98,7 +98,7 @@
   <div class="modal-popups">
     <div id="popup" class="popup">
       <div class="popup-content">
-        <div class="popup-header">
+        <!-- <div class="popup-header">
           <div class="ellipsis">
             <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
           </div>
@@ -106,28 +106,26 @@
             <i class="fa fa-star-o" id="unfav" aria-hidden="true"></i>
             <i class="fa fa-star" id="fav" aria-hidden="true" style="display: none;"></i>
           </div>
-        </div>
+        </div> -->
         <div class="popup-body">
           <form class="" action="/uploadBloc" method="post">
-            <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
-
-
+            <input name="url" type="text" id="url" placeholder="Website URL...">
+            <input name="url" type="text" id="imgurl" placeholder="Image URL...">
             <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
-            <img id="uploadPreview" class="is-inline">
-            <input id="file" type="file" class=""onchange="PreviewImage()"/>
-            <button type="button" id="link-btn"name="link-button">Customize</button>
-
             <input name="title" type="text" id="title" placeholder="Bloc Title...">
-
             <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
-            <label for="category">Category: </label>
-            <select class="category fa" id="category" name="category">
-              <option value="all">All</option>
-              <option value="video" class="fa">&#xf04b; Video</option>
-              <option value="web" class="fa">&#xf0c1; Web</option>
-              <option value="images" class="fa">&#xf030; Images</option>
-              <option value="favourites" class="fa">&#xf005; Favourites</option>
-            </select>
+            <img id="uploadPreview" class="is-inline">
+            <input id="file" type="file" class="is-inline" onchange="PreviewImage()"/>
+            <div class="cat">
+              <label for="category">Category: </label>
+              <select class="category fa" id="category" name="category">
+                <option value="all">All</option>
+                <option value="video" class="fa">&#xf04b; Video</option>
+                <option value="web" class="fa">&#xf0c1; Web</option>
+                <option value="images" class="fa">&#xf030; Images</option>
+                <option value="favourites" class="fa">&#xf005; Favourites</option>
+              </select>
+            </div>
           </div>
           <div class="popup-footer">
             <button type="button" id="cancel">Cancel</button>
@@ -154,8 +152,30 @@
         </form>
       </div>
     </div>
+
+    <div id="popup2" class="popup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <span>Profile</span>
+        </div>
+        <div class="popup-body">
+          <form class="" action="/uploadProfile" method="post">
+            <input name="name" type="text" placeholder="Name...">
+            <input name="qualifications" type="text" placeholder="Qualifications...">
+            <input name="sendewebsite" type="text" placeholder="Your Website...">
+            <input name="twitter" type="text" placeholder="Twitter...">
+            <input name="facebook" type="text" placeholder="Facebook...">
+            <input name="google" type="text" placeholder="Google...">
+          </div>
+          <div class="popup-footer">
+            <button type="button" id="cancel2">Cancel</button>
+            <button type="submit" id="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+
 
 <script type="text/javascript" src="static/js/dropzone.min.js"></script>
 <script type="text/javascript" src="static/js/modal.js"></script>
