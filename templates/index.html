@@ -66,33 +66,21 @@
 
         <div class="portfolio-content">
               {%for item in data%}
-<<<<<<< HEAD
-              <div class="individual-blocs">
-                <div class="individual-blocs-img">
-                  <img src="{{item[2]}}" alt="">
-                </div>
-                <div class="individual-bloc-title">
-                  {{item[1]}}
-=======
+
               <div class="individual-blocs" id="drag{{ item[0] }}">
                 <div class="individual-bloc-img">
                   <img src="{{ item[2] }}" alt="{{ item[2] }}">
                 </div>
                 <div class="individual-bloc-title">
                   {{item[3]}}
->>>>>>> 015d94371fc5b74abe736956e5d2b78a6b15ed3b
                 </div>
                 <div class="individual-bloc-link">
-                  {{item[3]}}
+                <a href="{{item[1]}}"></a>
                 </div>
                 <div class="individual-bloc-options">
 
                 </div>
                 <div class="individual-bloc-note">
-<<<<<<< HEAD
-                  {{item[2]}}
-=======
->>>>>>> 015d94371fc5b74abe736956e5d2b78a6b15ed3b
                 </div>
               </div>
               {%endfor%}
