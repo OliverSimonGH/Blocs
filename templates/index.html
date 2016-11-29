@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="../static/css/master.css">
   <link rel="stylesheet" type="text/css" href="../static/css/dropzone.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 <body>
   <!-- Navigation bar -->
@@ -53,7 +54,7 @@
       </div>
     </div>
 
-    <div class="portfolio">
+    <span class="portfolio">
       <div class="portfolio-title">
         <i class="fa fa-folder" aria-hidden="true"></i><span>Portfolio</span>
         <select class="category fa" name="category">
@@ -63,49 +64,59 @@
           <option value="images" class="fa">&#xf030; Images</option>
           <option value="favourites" class="fa">&#xf005; Favourites</option>
         </select>
-      </div>
+      </span>
 
-      <div class="portfolio-content">
-        <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
-         <img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
-         <img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
-         <img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31">
-
-</div>
-</div>
-
-
-      </div>
-    </div>
-
-    <aside class="new-block">
-      <a href="#">Create new Bloc</a>
-    </aside>
-
-      <div class="submitted-blocs">
-        {% block db_results %}
-        {%for item in result%}
-        <div class="indivdiual-blocs">
-          <p>{{item[0]}}</p>
-          <p>{{item[1]}}</p>
-          <p>{{item[2]}}</p>
-          <p>{{item[3]}}</p>
+        <span class="text-right" id="#edit" onclick="editBloc()">Edit blocks</span>
+        <div class="portfolio-content">
+          <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
+            {% block getBlocs %}
+              {% for item in result %}
+              <span><img src="{{ item['link'] }}"draggable="true" ondragstart="drag(event)" id="{{ item['id'] }}" class="blocStyle" ></span>
+              {% endfor %}
+            {% endblock %}
+          <span><img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" class="blocStyle"></span>
+          <span><img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" class="blocStyle"></span>
+          <span><img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" class="blocStyle"></span>
         </div>
-        {%endfor%}
-        {% endblock %}
-      </div>
+     </div>
+   </div>
+ </div>
 
+<section class="text-center" id="edit-form">
+  <center><form name="editBlocForm" action="/editBloc" method="post">
+    <select id="idValue" name="idValue">
+      {% block ids %}
+        {% for item in result %}
+        <option value=" {{ item['id'] }}">{{ item['id'] }}</option>
+        {% endfor %}
+      {% endblock %}
+    </select>
+    <br>
+    Title
+    <input type="text" id="title" name="title"></input>
 
-    <div class="modal-popups">
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <div class="popup-header">
-            <div class="ellipsis">
-              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-            </div>
-            <div class="favourite">
+    Link
+    <input type="text" id="link" name="link"></input>
+
+    Description
+
+    <input type="textarea" id="description" name="description"></input>
+    <input type="submit" action="#"></input>
+  </form>
+</center>
+</section>
+
+ <aside class="new-block">
+   <a href="#">Create new Bloc</a>
+ </aside>
+ <div class="modal-popups">
+   <div id="popup" class="popup">
+     <div class="popup-content">
+       <div class="popup-header">
+         <div class="ellipsis">
+           <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+         </div>
+         <div class="favourite">
               <i class="fa fa-star-o" id="unfav" aria-hidden="true"></i>
               <i class="fa fa-star" id="fav" aria-hidden="true" style="display: none;"></i>
             </div>
@@ -167,5 +178,6 @@
     <script type="text/javascript" src="static/js/drag.js"></script>
     <script src="https://use.fontawesome.com/1ff151e915.js"></script>
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/blocs.js"></script>
   </body>
 </html>

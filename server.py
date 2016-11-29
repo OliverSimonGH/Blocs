@@ -13,31 +13,12 @@ app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
 
 
-
-#Home section - Adding blocks to database and removing from database
-@app.route("/")
-@app.route("/home")
-def home():
-    #database.select_all()
-    return render_template('index.html')
-
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
     parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
     database.write_bloc_to_database(parameters)
-    db_result = database.select_all()
-    result_list = []
-    current_list = []
 
-    for row in db_result:
-        current_list.append(row[0])
-        current_list.append(row[1])
-        current_list.append(row[2])
-        current_list.append(row[3])
-        current_list.append(row[4])
-        result_list.append(current_list)
-
-    return render_template('index.html', result=result_list)
+    return redirect("/")
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
@@ -100,7 +81,16 @@ def index():
     for filename in os.listdir(UPLOAD_FOLDER):
         if (isImageFormat(filename)):
             all_image_files.append(filename)
-    return render_template('index.html', **locals());
+
+    result = database.select_all()
+    result_list = []
+    result_dict = {}
+
+    for row in result:
+        result_dict['id'] = row[0]
+        result_dict['link'] = row[2]
+        result_list.append(result_dict)
+    return render_template('index.html', result=result_list);
 
 def correctFormat(link):
     if (link.find('.jpg') > -1 or link.find('.png') > -1 or link.find('.gif') > -1 or link.find('.jpeg') > -1):
@@ -115,7 +105,11 @@ def upload():
         file.save(upload_path)
         return 'ok'
 
-
+@app.route('/editBloc', methods=['POST'])
+def editBlocForm():
+    parameters = [request.form["title"], request.form["link"], request.form["description"], request.form["idValue"]]
+    database.update_table(parameters)
+    return redirect('/')
 
 if __name__ == "__main__":
     database.delete_tables()
