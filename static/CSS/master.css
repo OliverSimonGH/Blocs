@@ -533,6 +533,30 @@ nav#email-list-nav a{
   margin: 0 5px 10px 5px;
 }
 
+.individual-bloc-title{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.individual-blocs:hover .individual-bloc-title{
+  overflow: visible;
+  height: auto;
+}
+
+.individual-bloc-img img{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .individual-bloc-link, .individual-bloc-link a{
   background-color: transparent;
   position: absolute;
