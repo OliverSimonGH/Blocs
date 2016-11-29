@@ -44,17 +44,20 @@
     <div class="links-to-send">
       <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
       <form class="dropzone dz-clickable" method="POST" action="/upload">
-      <div class="dz-message">
-      <h4 id="mainDz">Drag Files to Upload</h4>
-      <span id="subDz">Or click to browse</span>
-      </div>
+        <div class="dz-message">
+          <h4 id="mainDz">Drag Files to Upload</h4>
+          <span id="subDz">Or click to browse</span>
+        </div>
       </form>    </br></br>
       <!-- <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
-        <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
-      </div>
+      <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
     </div>
+<<<<<<< HEAD
 
     <span class="portfolio">
+=======
+    <div class="portfolio">
+>>>>>>> 1d2c8d414fe6537c2391cc4ab9b30c67baf00062
       <div class="portfolio-title">
         <i class="fa fa-folder" aria-hidden="true"></i><span>Portfolio</span>
         <select class="category fa" name="category">
@@ -64,6 +67,7 @@
           <option value="images" class="fa">&#xf030; Images</option>
           <option value="favourites" class="fa">&#xf005; Favourites</option>
         </select>
+<<<<<<< HEAD
       </span>
 
         <span class="text-right" id="#edit" onclick="editBloc()">Edit blocks</span>
@@ -117,6 +121,33 @@
            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
          </div>
          <div class="favourite">
+=======
+      </div>
+
+      <div class="portfolio-content">
+        <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
+            <img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
+            <img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
+            <img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<<<<<<< HEAD
+    <div class="modal-popups">
+      <div id="popup" class="popup">
+        <div class="popup-content">
+          <div class="popup-header">
+            <div class="ellipsis">
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </div>
+            <div class="favourite">
+>>>>>>> 1d2c8d414fe6537c2391cc4ab9b30c67baf00062
               <i class="fa fa-star-o" id="unfav" aria-hidden="true"></i>
               <i class="fa fa-star" id="fav" aria-hidden="true" style="display: none;"></i>
             </div>
@@ -124,15 +155,31 @@
           <div class="popup-body">
             <form class="" action="/uploadBloc" method="post">
               <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
-
-
               <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
               <img id="uploadPreview" class="is-inline">
               <input id="file" type="file" class=""onchange="PreviewImage()"/>
               <button type="button" id="link-btn"name="link-button">Customize</button>
+=======
+  <aside class="new-block">
+    <a href="#">Create new Bloc</a>
+  </aside>
 
-              <input name="title" type="text" id="title" placeholder="Bloc Title...">
+  <div class="submitted-blocs">
+    {% block db_results %}
+    {%for item in result%}
+    <div class="indivdiual-blocs">
+      <p>{{item[0]}}</p>
+      <p>{{item[1]}}</p>
+      <p>{{item[2]}}</p>
+      <p>{{item[3]}}</p>
+    </div>
+    {%endfor%}
+    {% endblock %}
+  </div>
+>>>>>>> a29b6106071f2428b463b2108971e6e50f1a61c4
 
+
+<<<<<<< HEAD
               <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
               <label for="category">Category: </label>
               <select class="category fa" id="category" name="category">
@@ -142,34 +189,76 @@
                 <option value="images" class="fa">&#xf030; Images</option>
                 <option value="favourites" class="fa">&#xf005; Favourites</option>
               </select>
+              <input type="submit">
+            </form>
+=======
+  <div class="modal-popups">
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <div class="ellipsis">
+            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+          </div>
+          <div class="favourite">
+            <i class="fa fa-star-o" id="unfav" aria-hidden="true"></i>
+            <i class="fa fa-star" id="fav" aria-hidden="true" style="display: none;"></i>
+          </div>
+        </div>
+        <div class="popup-body">
+          <form class="" action="/uploadBloc" method="post">
+            <input name="url" type="text" id="url" placeholder="To what URL shall this link go...">
+
+
+            <!-- <textarea type="text" id="link" placeholder="Link preview..."></textarea> -->
+            <img id="uploadPreview" class="is-inline">
+            <input id="file" type="file" class=""onchange="PreviewImage()"/>
+            <button type="button" id="link-btn"name="link-button">Customize</button>
+
+            <input name="title" type="text" id="title" placeholder="Bloc Title...">
+
+            <textarea name="notes" type="text" id="notes" placeholder="Your notes..."></textarea>
+            <label for="category">Category: </label>
+            <select class="category fa" id="category" name="category">
+              <option value="all">All</option>
+              <option value="video" class="fa">&#xf04b; Video</option>
+              <option value="web" class="fa">&#xf0c1; Web</option>
+              <option value="images" class="fa">&#xf030; Images</option>
+              <option value="favourites" class="fa">&#xf005; Favourites</option>
+            </select>
+>>>>>>> a29b6106071f2428b463b2108971e6e50f1a61c4
           </div>
           <div class="popup-footer">
             <button type="button" id="cancel">Cancel</button>
-            <button type="submit" id="submit">Save</button>
+            <button type="button" id="submit" value="submit">Save</button>
           </div>
         </form>
-        </div>
       </div>
+    </div>
 
-      <div id="popup1" class="popup">
-        <div class="popup-content">
-          <div class="popup-header">
-            <h3>Personalise Bloc Cover Image</h3>
-          </div>
+    <div id="popup1" class="popup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <h3>Personalise Bloc Cover Image</h3>
+        </div>
+        <form class="" action="index.html" method="post">
           <div class="popup-body">
-            <form class="" action="index.html" method="post">
-              <textarea type="text" id="url1" placeholder="To what URL shall this link go? (or leave blank to use same image as your link)"></textarea>
-              <textarea  type="text" id="link1" placeholder="Link preview..."></textarea>
-            </form>
+            <textarea type="text" id="url1" placeholder="To what URL shall this link go? (or leave blank to use same image as your link)"></textarea>
+            <textarea  type="text" id="link1" placeholder="Link preview..."></textarea>
           </div>
           <div class="popup-footer">
             <button type="button" id="cancel1">Cancel</button>
             <button type="button" id="submit1">Save</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
+</div>
 
+<<<<<<< HEAD
+      <aside class="new-block">
+        <a>Create new Bloc</a>
+      </aside>
     </div>
 
     <script type="text/javascript" src="static/js/dropzone.min.js"></script>
@@ -180,4 +269,13 @@
     <script type="text/javascript" src="static/js/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/blocs.js"></script>
   </body>
+=======
+<script type="text/javascript" src="static/js/dropzone.min.js"></script>
+<script type="text/javascript" src="static/js/modal.js"></script>
+<script type="text/javascript" src="static/js/imagePreview.js"></script>
+<script type="text/javascript" src="static/js/drag.js"></script>
+<script src="https://use.fontawesome.com/1ff151e915.js"></script>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+</body>
+>>>>>>> a29b6106071f2428b463b2108971e6e50f1a61c4
 </html>

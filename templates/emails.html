@@ -9,37 +9,44 @@
 <body>
   <nav id="email-list-nav">
     <div class="email-list-search">
-      <i class="fa fa-search" aria-hidden="true"></i>
+      <form class="" action="/searchEmail" method="GET">
+        <input type="text" name="search" placeholder="Search...">
+      </form>
     </div>
-      <div class="email-list-back">
-        <a href="/"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-      </div>
+    <div class="email-list-back">
+      <a href="/"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
   </nav>
   <div class="email-list-title">
     <h3>Mailing List</h3>
   </div>
   <div class="email-list-sort-table">
     <span>Sorted by: </span>
-    <select class="category" name="category">
-      <option value="new">Newest</option>
-      <option value="az-sort">A - Z</option>
-      <option value="za-sort">Z - A </option>
-      <option value="date">Date </option>
+    <select id="selectBox" name="category" onchange="sort()">
+      <option value="newSort">Newest</option>
+      <option value="ascSort">A - Z</option>
+      <option value="descSort">Z - A </option>
+      <option value="dateSort">Date </option>
     </select>
   </div>
-  <div class="email-list-table">
-    <table>
+
+  <div id="email-list-table">
+    <table id="email-table" class="tablesorter">
       <thead>
         <tr><td>Email</td><td></td></tr>
       </thead>
       <tbody>
         {% for email in email_address %}
-        <tr><td>{{ email[0] }}</td><td><a href="#">Remove from list</a></td></tr>
+        <tr>
+          <td>{{ email[0] }}</td>
+          <td>
+            <form action="/deleteEmail" method="POST" id="deleteEmail">
+              <input type="hidden" name="email_add" value="{{ email[0] }}">
+              <button type="submit" name="button">Remove from list</button>
+            </form>
+          </td>
+        </tr>
         {% endfor %}
-        <!-- <tr><td>oliver_simon@hotmail.co.uk</td><td><a href="#">Remove from list</a></td></tr>
-        <tr><td>morgan@yahoo.com</td><td><a href="#">Remove from list</a></td></tr>
-        <tr><td>ian@domain.com</td><td><a href="#">Remove from list</a></td></tr>
-        <tr><td>idontknowaname@hotmail.co.uk</td><td><a href="#">Remove from list</a></td></tr> -->
       </tbody>
     </table>
   </div>
