@@ -12,19 +12,10 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 app.secret_key = "this_is_a_secret"
 DATABASE = "Blocs.db"
 
-<<<<<<< HEAD
-=======
-#Home section - Adding blocks to database and removing from database
-@app.route("/")
-@app.route("/home")
-def home():
-    database.select_all()
-    return render_template('index.html')
->>>>>>> 1d2c8d414fe6537c2391cc4ab9b30c67baf00062
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    parameters = [request.form["title"], request.form["notes"], request.form["url"], request.form["category"]]
+    parameters = [request.form["url"], request.form["title"], request.form["notes"], request.form["category"]]
     database.write_bloc_to_database(parameters)
 
     return redirect("/")
@@ -36,43 +27,21 @@ def sendEmail():
     check = bool(email_radio)
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
-    conn = sqlite3.connect(DATABASE)
-    # http://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows
-    conn.row_factory = lambda cursor, row: row[0]
-    cur = conn.cursor()
-    cur.execute("SELECT emailAddress FROM Emails")
-    data = cur.fetchall()
+    if email_sent == "":
+        msg = "Please enter an e-mail address"
 
-    if email_sent == "" or not email_val.match(email_sent):
+    elif not email_val.match(email_sent):
         msg = "Please enter a valid e-mail address"
 
-    elif email_sent in data:
-        print("Email already exists")
-        if check == 0:
-            cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
-        elif check == 1:
-            cur.execute("UPDATE Emails SET emailList=1 WHERE emailAddress=?",(email_sent,))
-        msg = "You have sent an e-mail to: " + email_sent
-        #Send email
     else:
-        # store new email sent into the database
-        database.create_email(email_sent, check)
+        # store data into database
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO Emails ('emailAddress', 'emailList')\
+                     VALUES (?,?)", (email_sent, check))
+        conn.commit()
         msg = "You have sent an e-mail to: " + email_sent
-        # send email
-
-    conn.commit()
-    conn.close()
     return render_template("index.html", msg=msg)
-
-@app.route('/deleteEmail', methods=['POST'])
-def delete_email():
-    email = request.form.get('email_add')
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("UPDATE Emails SET emailList=0 WHERE emailList=1 and emailAddress=?", (email,))
-    conn.commit()
-    conn.close()
-    return redirect("/emails")
 
 @app.route("/readBloc", methods=['GET'])
 def read_bloc():
@@ -105,6 +74,7 @@ def settings():
 def page_not_found(e):
     return render_template('404.html'), 404
 
+
 @app.route('/')
 def index():
     all_image_files = []
@@ -135,15 +105,12 @@ def upload():
         file.save(upload_path)
         return 'ok'
 
-<<<<<<< HEAD
 @app.route('/editBloc', methods=['POST'])
 def editBlocForm():
     parameters = [request.form["title"], request.form["link"], request.form["description"], request.form["idValue"]]
     database.update_table(parameters)
     return redirect('/')
 
-=======
->>>>>>> 1d2c8d414fe6537c2391cc4ab9b30c67baf00062
 if __name__ == "__main__":
     database.delete_tables()
     database.create_tags()
