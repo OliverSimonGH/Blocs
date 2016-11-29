@@ -67,28 +67,28 @@
         <div class="portfolio-content">
           <div class = "box" id="box" ondrop="drop(event)" ondragover="allowDrop(event)">
             <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a>
+              <!-- <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a> -->
               <!-- <img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
               <img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
               <img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31"> -->
-              {% block db_results %}
-              {%for item in result%}
-              <div class="individual-blocs">
+
+              {%for item in data%}
+              <div class="individual-blocs" id="drag{{ item[0] }}">
                 <div class="individual-blocs-img">
                   <img src="" alt="">
                 </div>
                 <div class="individual-bloc-title">
-                  {{item[1]}}
+
                 </div>
                 <div class="individual-bloc-link">
-                  {{item[3]}}
+                  <a href="{{ item[1] }}"></a>
                 </div>
                 <div class="individual-bloc-note">
-                  {{item[2]}}
+                  <img src="{{ item[2] }}" alt="{{ item[2] }}">
                 </div>
               </div>
               {%endfor%}
-              {% endblock %}
+
               <div class="individual-blocs new-block">
                 <a href="#">Create new Bloc</a>
               </div>
