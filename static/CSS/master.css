@@ -512,6 +512,16 @@ input#file {
   background-size: contain;
 }
 
+.blocStyle {
+  width: 88px;
+  height: 88px;
+}
+
+.text-right {
+  float: right;
+  margin-right: 1%;
+}
+
 #dzMsg {
 
 }
