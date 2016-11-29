@@ -84,12 +84,12 @@ def index():
 
     result = database.select_all()
     result_list = []
-    result_dict = {}
+
 
     for row in result:
-        result_dict['id'] = row[0]
-        result_dict['link'] = row[2]
-        result_list.append(result_dict)
+        tup = (row[0], row[2])
+        result_list.append(tup)
+
     return render_template('index.html', result=result_list);
 
 def correctFormat(link):

@@ -71,7 +71,7 @@
           <div class = "box" ondrop="drop(event)" ondragover="allowDrop(event)">
             {% block getBlocs %}
               {% for item in result %}
-              <span><img src="{{ item['link'] }}"draggable="true" ondragstart="drag(event)" id="{{ item['id'] }}" class="blocStyle" ></span>
+                <span><img src="{{ item[1] }}"draggable="true" ondragstart="drag(event)" id="{{ item[0] }}" class="blocStyle" ></span>
               {% endfor %}
             {% endblock %}
           <span><img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" class="blocStyle"></span>
@@ -87,7 +87,7 @@
     <select id="idValue" name="idValue">
       {% block ids %}
         {% for item in result %}
-        <option value=" {{ item['id'] }}">{{ item['id'] }}</option>
+          <option value="{{ item[0] }}">{{ item[0] }}</option>
         {% endfor %}
       {% endblock %}
     </select>
