@@ -183,7 +183,6 @@
   margin: 20px;
   min-height: 132px;
   border: 1px solid #d3d3d3;
-  box-shadow:         8px 8px 21px 0px rgba(50, 50, 50, 0.75);
 
 /*background: url("../images/bg1.jpg");
 background-position: center;*/
@@ -206,13 +205,13 @@ background-position: center;*/
 
   #mainDz {
     font-size: 30px;
-    color:rrgb(34, 141, 179);
+    color:rgb(135, 224, 255);
     font-weight: lighter;
   }
   #subDz{
     font-size: 15px;
     font-weight: lighter;
-    color: #171819;
+    color: #d9dfe0;
   }
   .dropzone .dz-preview {
     position: relative;
@@ -231,7 +230,7 @@ background-position: center;*/
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: white; }
+      background: rgb(78, 81, 90); }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;

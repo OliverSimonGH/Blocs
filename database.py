@@ -17,7 +17,8 @@ def create_tables():
     `imgurl` TEXT NOT NULL,\
     `title` TEXT NOT NULL, \
     `notes` TEXT NOT NULL,\
-    `category` TEXT NOT NULL);")
+    `category` TEXT NOT NULL,\
+    `favourite` INTEGER NOT NULL);")
     # `TagID` INTEGER NOT NULL,\
     # FOREIGN KEY(TagID) REFERENCES Tags(ID));')
 
@@ -27,6 +28,7 @@ def create_tables():
     `sender` TEXT NOT NULL,\
     `date` TEXT NOT NULL,\
     `time` TEXT NOT NULL);")
+    conn.commit()
     conn.close()
 
 def create_tags():
@@ -38,13 +40,13 @@ def create_tags():
 
 def populate_tables():
     conn = sqlite3.connect(DATABASE)
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://en-gb.facebook.com/', 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg', 'Facebook', 'Click this link to go to facebook', 'ALL')")
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://taiga.cs.cf.ac.uk/', 'https://files.graphiq.com/stories/t2/tiny_cat_12573_8950.jpg', 'This is taiga', 'This link will take the user to taiga', 'ALL')")
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://sqlite.org/lang.html', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkoIe-ZUjPzuxhO_TceItomnQ1CrLa2TpIU2TSC_MgaFdUgxxbfg', 'SQLite3', 'Learn how to code with SQLite3', 'ALL')")
-    conn.execute("INSERT INTO Blocs ( `weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://intranet.cardiff.ac.uk/students', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdolGLviByI1PEjzD8jQfDwYRURYRSxwOWeUgLTHoYWP79ezXW', 'Cardiff Intranet', 'Explore multiple student options', 'ALL')")
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://www.youtube.com/watch?v=rJAPZFE4C7I', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQQZ6m0ZmN6HNTQ2QYtdNZ0w6zidyGrL-YwZWlFAZ_KtMoqo4vT', 'Youtube sqlite', 'How to do email validation in flask', 'ALL')")
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`) VALUES('https://css-tricks.com/snippets/jquery/make-entire-div-clickable/', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTym_yzPMS5O1LC9LTqvLvXjWmK-jiClSPHxxhRydciTj2SbJXD', 'CSS Tricks', 'Learn how to use CSS today', 'ALL')")
-    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`,  `category`) VALUES('http://stackoverflow.com/questions/4858047/the-following-untracked-working-tree-files-would-be-overwritten-by-checkout', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcThtVuIQ7CBYssbdwtzZjVLI_uw09SeLmyrxaRQEngnQAked5ZB', 'Stackoverflow problem - resolved', 'This link will help the user solve their problem with the link they are given', 'ALL')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://en-gb.facebook.com/', 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg', 'Facebook', 'Click this link to go to facebook', 'web', '1')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://taiga.cs.cf.ac.uk/', 'https://files.graphiq.com/stories/t2/tiny_cat_12573_8950.jpg', 'This is taiga', 'This link will take the user to taiga', 'images', '0')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://sqlite.org/lang.html', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkoIe-ZUjPzuxhO_TceItomnQ1CrLa2TpIU2TSC_MgaFdUgxxbfg', 'SQLite3', 'Learn how to code with SQLite3', 'video', '1')")
+    conn.execute("INSERT INTO Blocs ( `weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://intranet.cardiff.ac.uk/students', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdolGLviByI1PEjzD8jQfDwYRURYRSxwOWeUgLTHoYWP79ezXW', 'Cardiff Intranet', 'Explore multiple student options', 'video', '0')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://www.youtube.com/watch?v=rJAPZFE4C7I', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQQZ6m0ZmN6HNTQ2QYtdNZ0w6zidyGrL-YwZWlFAZ_KtMoqo4vT', 'Youtube sqlite', 'How to do email validation in flask', 'video', '1')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`, `category`, `favourite`) VALUES('https://css-tricks.com/snippets/jquery/make-entire-div-clickable/', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTym_yzPMS5O1LC9LTqvLvXjWmK-jiClSPHxxhRydciTj2SbJXD', 'CSS Tricks', 'Learn how to use CSS today', 'web', '0')")
+    conn.execute("INSERT INTO Blocs (`weburl`, `imgurl`, `title`, `notes`,  `category`, `favourite`) VALUES('http://stackoverflow.com/questions/4858047/the-following-untracked-working-tree-files-would-be-overwritten-by-checkout', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcThtVuIQ7CBYssbdwtzZjVLI_uw09SeLmyrxaRQEngnQAked5ZB', 'Stackoverflow problem - resolved', 'This link will help the user solve their problem with the link they are given', 'images', '1')")
     conn.execute("INSERT INTO Tags (`Title`) VALUES('All')")
     conn.execute("INSERT INTO Tags (`Title`) VALUES('Video')")
     conn.execute("INSERT INTO Tags (`Title`) VALUES('Web')")
