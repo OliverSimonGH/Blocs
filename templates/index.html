@@ -41,37 +41,33 @@
       </form>
     </div>
 
-    <div class="links-to-send">
-      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
-      <form class="dropzone dz-clickable" method="POST" action="/upload">
-        <div class="dz-message">
-          <h4 id="mainDz">Drag Files to Upload</h4>
-          <span id="subDz">Or click to browse</span>
-        </div>
-      </form>    </br></br>
-      <!-- <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
-      <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
-    </div>
-    <div class="portfolio">
-      <div class="portfolio-title">
-        <i class="fa fa-folder" aria-hidden="true"></i><span>Portfolio</span>
-        <select class="category fa" name="category">
-          <option value="all">All</option>
-          <option value="video" class="fa">&#xf04b; Video</option>
-          <option value="web" class="fa">&#xf0c1; Web</option>
-          <option value="images" class="fa">&#xf030; Images</option>
-          <option value="favourites" class="fa">&#xf005; Favourites</option>
-        </select>
+      <div class="links-to-send">
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i><span>Links to send:</span>
+        <form class="dropzone dz-clickable" method="POST" action="/upload">
+          <div class="dz-message">
+            <h4 id="mainDz">Drag Files to Upload</h4>
+            <span id="subDz">Or click to browse</span>
+          </div>
+        </form>    </br></br>
+        <!-- <div class="box" id="dragIn" ondrop="drop(event)" ondragover="allowDrop(event)"> -->
+        <!-- <textarea class="drag-links" placeholder="Select or Drag and drop Blocs you want to send here..." readonly></textarea> -->
       </div>
+
+      <div class="portfolio">
+        <div class="portfolio-title">
+          <i class="fa fa-folder" aria-hidden="true"></i><span>Portfolio</span>
+          <select class="category fa" name="category">
+            <option value="all">All</option>
+            <option value="video" class="fa">&#xf04b; Video</option>
+            <option value="web" class="fa">&#xf0c1; Web</option>
+            <option value="images" class="fa">&#xf030; Images</option>
+            <option value="favourites" class="fa">&#xf005; Favourites</option>
+          </select>
+        </div>
 
       <div class="portfolio-content">
         <div class = "box" id="box" ondrop="drop(event)" ondragover="allowDrop(event)">
           <div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- <a href="http://www.w3schools.com"><img src="../static/images/gdrive.ico" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31"></a> -->
-            <!-- <img src="../static/images/gmail.ico" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
-            <img src="../static/images/docs.png" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
-            <img src="../static/images/google.png" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31"> -->
-
             {%for item in data%}
             <div class="individual-blocs" id="drag{{item[0]}}" data-sort="{{item[5]}}">
               <div class="individual-bloc-img" >
@@ -133,6 +129,7 @@
                 </div>
               </div>
               <div class="individual-bloc-note">
+
               </div>
             </div>
             {%endfor%}
