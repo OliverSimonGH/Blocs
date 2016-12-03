@@ -36,6 +36,7 @@ $('.individual-bloc-fav').on('click', function(){
         data: $('#fav-form-' + blocId).serialize(),
         type: "POST",
         success: function (data) {
+          $('#drag' + blocId).attr('data-fav', '1');
           console.log("success: " + data);
         }
       }));
@@ -48,6 +49,7 @@ $('.individual-bloc-fav').on('click', function(){
         data: $('#unfav-form-' + blocId).serialize(),
         type: "POST",
         success: function (data) {
+          $('#drag' + blocId).attr('data-fav', '0');
           console.log("success: " + data);
         }
       }));
