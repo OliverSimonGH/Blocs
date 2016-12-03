@@ -24,6 +24,7 @@ def home():
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
+    fav = request.form.get('fav')
     url = request.form.get('url')
     imgurl = request.form.get('imgurl')
     title = request.form.get('title')
@@ -32,8 +33,8 @@ def upload_bloc():
 
     conn = sqlite3.connect(DATABASE)
     cur = conn.cursor()
-    cur.execute("INSERT INTO `Blocs`(`weburl`, `imgurl`, `title`, `notes`, `category`)\
-                VALUES(?,?,?,?,?)", (url, imgurl, title, notes, category))
+    cur.execute("INSERT INTO `Blocs`(`weburl`, `imgurl`, `title`, `notes`, `category`,`favourite`)\
+                VALUES(?,?,?,?,?,?)", (url, imgurl, title, notes, category, fav))
     conn.commit()
     conn.close()
     return redirect("/")
@@ -137,9 +138,51 @@ def upload():
 
 @app.route('/editBloc', methods=['POST'])
 def editBlocForm():
-    parameters = [request.form["title"], request.form["link"], request.form["description"], request.form["idValue"]]
-    database.update_table(parameters)
-    return redirect('/')
+    blocid = request.form.get('blocid')
+    url = request.form.get('url')
+    imgurl = request.form.get('imgurl')
+    title = request.form.get('title')
+    notes = request.form.get('notes')
+    category = request.form.get('category')
+
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE `Blocs` SET `weburl`=?, `imgurl`=?, `title`=?, `notes`=?, `category`=? WHERE `blocid`=?", (url, imgurl, title, notes, category, blocid))
+    conn.commit()
+    conn.close()
+    return redirect("/")
+
+@app.route('/deleteBloc', methods=['POST'])
+def deleteBlocForm():
+    blocNum = request.form.get('del_block')
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("DELETE FROM `Blocs` WHERE `blocid`=?", (blocNum,))
+    conn.commit()
+    conn.close()
+    return redirect("/")
+
+@app.route('/favBloc', methods=['POST'])
+def favBloc():
+    blocid = request.form['id']
+    fav = request.form['fav']
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE Blocs SET favourite=? WHERE blocid=?", (fav, blocid))
+    conn.commit()
+    conn.close()
+    return "Favourited"
+
+@app.route('/unfavBloc', methods=['POST'])
+def unfavBloc():
+    blocid = request.form['id']
+    fav = request.form['fav']
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("UPDATE Blocs SET favourite=? WHERE blocid=?", (fav, blocid))
+    conn.commit()
+    conn.close()
+    return "Unfavourited"
 
 if __name__ == "__main__":
     database.delete_tables()
