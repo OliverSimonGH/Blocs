@@ -96,7 +96,7 @@ def select_all():
     cur.execute("SELECT * FROM Blocs")
     conn.row_factory = sqlite3.Row
     result = cur.fetchall()
-    print(result)
+    #print(result)
     conn.close()
     return result
 
@@ -148,6 +148,6 @@ def read_logs():
     cur.execute("SELECT * FROM Logs")
     conn.row_factory = sqlite3.Row
     result = cur.fetchall()
-    print(result)
+    #print(result)
     conn.close()
     return result
