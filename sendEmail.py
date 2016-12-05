@@ -29,6 +29,8 @@ conn.close()
 # print(title_data)
 # print("")
 # print(notes_data)
+# print(weburl_data[0])
+# print(type(weburl_data))
 
 #Splitting up the data lists into variables that can be added to the email
 weburl_1 = str(weburl_data[0])
@@ -63,6 +65,8 @@ notes_1 = str(notes_data[4])
 notes_1 = str(notes_data[5])
 notes_1 = str(notes_data[6])
 
+# print(notes_1)
+# print(type(notes_1))
 from_email = "bradye@cardiff.ac.uk"
 from_pwd = "Summertime11"
 to_email = "BlocsTest@outlook.com"
@@ -79,12 +83,11 @@ user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
 
 bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
 bloc_1_title = '<a href="' + title_1 + '"> </a>'
-bloc_1_link = weburl_1
-
+bloc_1_link =  "https://www.google.co.uk/?gws_rd=ssl"
+test = '<br> <a href= ' + bloc_1_link + '> Google </a>'
 close_HTML = '</th></table></body></html>'
-#test = '<a href="www.google.co.uk"> Google </a>'
 
-new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + close_HTML #+ test
+new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + test + close_HTML
 
 msg.attach(MIMEText(new_html, 'html'))
 print(msg)
