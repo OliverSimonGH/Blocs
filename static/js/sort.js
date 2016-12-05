@@ -3,31 +3,31 @@ function sort() {
   var value = $('#sort-blocs option:selected').val();
 
   if(value == "favourites"){
-    $('#drop > [data-fav="1"]').show();
-    $('#drop > [data-fav="0"]').hide();
+    $('#box > [data-fav="1"]').show();
+    $('#box > [data-fav="0"]').hide();
   }
   else if (value == "video") {
-    $('#drop > [data-sort="video"]').show();
-    $('#drop > [data-sort="favourites"]').hide();
-    $('#drop > [data-sort="web"]').hide();
-    $('#drop > [data-sort="images"]').hide();
-    $('#drop > [data-sort="all"]').hide();
+    $('#box > [data-sort="video"]').show();
+    $('#box > [data-sort="favourites"]').hide();
+    $('#box > [data-sort="web"]').hide();
+    $('#box > [data-sort="images"]').hide();
+    $('#box > [data-sort="all"]').hide();
   }
   else if (value == "web") {
-    $('#drop > [data-sort="web"]').show();
-    $('#drop > [data-sort="favourites"]').hide();
-    $('#drop > [data-sort="video"]').hide();
-    $('#drop > [data-sort="images"]').hide();
-    $('#drop > [data-sort="all"]').hide();
+    $('#box > [data-sort="web"]').show();
+    $('#box > [data-sort="favourites"]').hide();
+    $('#box > [data-sort="video"]').hide();
+    $('#box > [data-sort="images"]').hide();
+    $('#box > [data-sort="all"]').hide();
   }
   else if (value == "images") {
-    $('#drop > [data-sort="images"]').show();
-    $('#drop > [data-sort="favourites"]').hide();
-    $('#drop > [data-sort="video"]').hide();
-    $('#drop > [data-sort="web"]').hide();
-    $('#drop > [data-sort="all"]').hide();
+    $('#box > [data-sort="images"]').show();
+    $('#box > [data-sort="favourites"]').hide();
+    $('#box > [data-sort="video"]').hide();
+    $('#box > [data-sort="web"]').hide();
+    $('#box > [data-sort="all"]').hide();
   }
   else if (value == "all") {
-    $('#drop > [data-showall="all"]').show();
+    $('#box > [data-showall="all"]').show();
   }
 };
