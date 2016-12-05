@@ -90,36 +90,36 @@ for data in range(0,7):
 # print(" ")
 
 weburl_1 = str(formatted_web[0])
-weburl_1 = str(formatted_web[1])
-weburl_1 = str(formatted_web[2])
-weburl_1 = str(formatted_web[3])
-weburl_1 = str(formatted_web[4])
-weburl_1 = str(formatted_web[5])
-weburl_1 = str(formatted_web[6])
+weburl_2 = str(formatted_web[1])
+weburl_3 = str(formatted_web[2])
+weburl_4 = str(formatted_web[3])
+weburl_5 = str(formatted_web[4])
+weburl_6 = str(formatted_web[5])
+weburl_7 = str(formatted_web[6])
 
 imgurl_1 = str(formatted_img[0])
-imgurl_1 = str(formatted_img[1])
-imgurl_1 = str(formatted_img[2])
-imgurl_1 = str(formatted_img[3])
-imgurl_1 = str(formatted_img[4])
-imgurl_1 = str(formatted_img[5])
-imgurl_1 = str(formatted_img[6])
+imgurl_2 = str(formatted_img[1])
+imgurl_3 = str(formatted_img[2])
+imgurl_4 = str(formatted_img[3])
+imgurl_5 = str(formatted_img[4])
+imgurl_6 = str(formatted_img[5])
+imgurl_7 = str(formatted_img[6])
 
 title_1 = str(formatted_title[0])
-title_1 = str(formatted_title[1])
-title_1 = str(formatted_title[2])
-title_1 = str(formatted_title[3])
-title_1 = str(formatted_title[4])
-title_1 = str(formatted_title[5])
-title_1 = str(formatted_title[6])
+title_2 = str(formatted_title[1])
+title_3 = str(formatted_title[2])
+title_4 = str(formatted_title[3])
+title_5 = str(formatted_title[4])
+title_6 = str(formatted_title[5])
+title_7 = str(formatted_title[6])
 
 notes_1 = str(formatted_notes[0])
-notes_1 = str(formatted_notes[1])
-notes_1 = str(formatted_notes[2])
-notes_1 = str(formatted_notes[3])
-notes_1 = str(formatted_notes[4])
-notes_1 = str(formatted_notes[5])
-notes_1 = str(formatted_notes[6])
+notes_2 = str(formatted_notes[1])
+notes_3 = str(formatted_notes[2])
+notes_4 = str(formatted_notes[3])
+notes_5 = str(formatted_notes[4])
+notes_6 = str(formatted_notes[5])
+notes_7 = str(formatted_notes[6])
 
 from_email = "blocstest@outlook.com"
 from_pwd = "Blocs123"
@@ -134,14 +134,12 @@ msg['To'] = target_email
 open_HTML = '<html> <head></head> <body>'
 title = '<h1 style="text-align:center;"> SMILEnotes </h1> <br>'
 user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
-
 bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
-bloc_1_title = '<a href=' + title_1 + '> </a>'
-bloc_1_link =  "https://www.google.co.uk/?gws_rd=ssl"
-#test = '<br> <a href=' + new_var + '> Google </a>'
+bloc_1_title = '<h3>' + title_1 + '</h3>'
+bloc_1_link = '<a href=' + weburl_1 + '>' + weburl_1 + '</a>'
 close_HTML = '</th></table></body></html>'
 
-new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + close_HTML
+new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + close_HTML
 
 msg.attach(MIMEText(new_html, 'html'))
 print(msg)
