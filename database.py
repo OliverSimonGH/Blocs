@@ -134,3 +134,20 @@ def create_email(email_sent, check):
     cur.execute("INSERT INTO Emails (`emailAddress`, `emailList`) VALUES (?,?)", (email_sent, check))
     conn.commit()
     conn.close()
+
+def write_log(parameters):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("INSERT INTO Logs(emailAddress, sender, date, time) VALUES(?, ?, ?, ?)", (parameters[0], parameters[1], parameters[2], parameters[3]))
+    conn.commit()
+    conn.close()
+
+def read_logs():
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM Logs")
+    conn.row_factory = sqlite3.Row
+    result = cur.fetchall()
+    print(result)
+    conn.close()
+    return result
