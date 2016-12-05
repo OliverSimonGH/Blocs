@@ -76,13 +76,15 @@ msg['To'] = "BlocsTest@outlook.com"
 open_HTML = '<html> <head></head> <body>'
 title = '<h1 style="text-align:center;"> SMILEnotes </h1> <br>'
 user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
+
 bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
 bloc_1_title = '<a href="' + title_1 + '"> </a>'
 bloc_1_link = weburl_1
-close_HTML = '</th></table></body></html>'
-test = '<a href="www.google.co.uk"> Google </a>'
 
-new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + close_HTML + test
+close_HTML = '</th></table></body></html>'
+#test = '<a href="www.google.co.uk"> Google </a>'
+
+new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + close_HTML #+ test
 
 msg.attach(MIMEText(new_html, 'html'))
 print(msg)
