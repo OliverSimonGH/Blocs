@@ -76,6 +76,7 @@ def populate_tables():
     conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake@yahoo.com', '1')")
     conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake1@yahoo.com', '0')")
     conn.execute("INSERT INTO Emails (`emailAddress`, 'emailList') VALUES('jake2@yahoo.com', '0')")
+    conn.execute("INSERT INTO Logs (`emailAddress`, `sender`, `date`, `time`) VALUES('alexandergmiles@hotmail.com', 'target@hotmail.com', '05/12/2016', '20:08')")
     conn.commit()
     conn.close()
 
@@ -96,7 +97,7 @@ def select_all():
     cur.execute("SELECT * FROM Blocs")
     conn.row_factory = sqlite3.Row
     result = cur.fetchall()
-    print(result)
+    #print(result)
     conn.close()
     return result
 
@@ -148,6 +149,5 @@ def read_logs():
     cur.execute("SELECT * FROM Logs")
     conn.row_factory = sqlite3.Row
     result = cur.fetchall()
-    print(result)
     conn.close()
     return result

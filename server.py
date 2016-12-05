@@ -99,7 +99,8 @@ def emails():
 #Logs - Add and view logs
 @app.route("/logs")
 def logs():
-    return render_template('logs.html')
+    results = database.read_logs()
+    return render_template('logs.html', results=results)
 
 @app.route("/profile")
 def profile():
