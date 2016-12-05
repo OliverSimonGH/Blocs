@@ -42,10 +42,16 @@
         <tr><td>Email</td><td>Sender</td><td>Date</td><td>Time</td><td></td></tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
+        {% block mainBlock%}
+          {%for item in results%}
+            <tr>
+              <td>{{item[1]}}</td>
+              <td>{{item[2]}}</td>
+              <td>{{item[3]}}</td>
+              <td>{{item[4]}}</td>
+            </tr>
+          {% endfor%}
+        {% endblock %}
       </tbody>
     </table>
   </div>

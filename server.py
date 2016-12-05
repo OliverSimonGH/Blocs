@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
 import os, re
+from sendEmail import send_email, set_emails
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -41,6 +42,7 @@ def upload_bloc():
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
+    local_from_email = "blocstest@outlook.com"
     email_sent = request.form.get('send-email')
     email_radio = request.form.get('send-radio')
     check = bool(email_radio)
@@ -52,7 +54,8 @@ def sendEmail():
     cur = conn.cursor()
     cur.execute("SELECT emailAddress FROM Emails")
     data = cur.fetchall()
-
+    parameters = [email_sent, local_from_email, "", ""]
+    set_emails(email_sent, local_from_email)
     if email_sent == "" or not email_val.match(email_sent):
         msg = "Please enter a valid e-mail address"
 
@@ -61,13 +64,19 @@ def sendEmail():
         if check == 0:
             cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
         msg = "You have sent an e-mail to: " + email_sent
-        #Send email
+        sendEmail.target_email = email_sent
+        sendEmail.from_email = local_from_email
+        send_email()
+        
+        database.write_log(parameters)
     else:
         # store new email sent into the database
         database.create_email(email_sent, check)
         msg = "You have sent an e-mail to: " + email_sent
         # send email
-
+        sendEmail.target_email = email_sent
+        send_email()
+        database.write_log(parameters)
     conn.commit()
     conn.close()
     return render_template("index.html", msg=msg)
