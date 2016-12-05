@@ -120,7 +120,7 @@ textarea{
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 1;
+  z-index: 4;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -132,6 +132,7 @@ textarea{
 /* Holds all of the Content */
 .popup-content {
   position: absolute;
+  z-index: 5;
   top: 0;
   bottom: 0;
   left: 0;
@@ -324,8 +325,10 @@ img#uploadPreview{
 
 .links-to-send{
   min-height: 192px;
-  max-height: inherit;
+  overflow: auto;
+  margin-bottom: 10px;
 }
+
 .portfolio span, .links-to-send span{
   margin-left: 10px;
   font-weight: bold;
@@ -337,8 +340,7 @@ img#uploadPreview{
 }
 
 .portfolio-content{
-  height: auto;
-  margin-top: 50px;
+  text-align: center;
 }
 
 .drag-links{
@@ -543,7 +545,33 @@ nav#email-list-nav a{
   float: left;
   display: inline-block;
   margin: 0 5px 10px 5px;
-  z-index: 2;
+}
+
+.new-block{
+  text-align: center;
+  border: 1px dashed #4a4a4a;
+  border-radius: 5px;
+}
+
+.new-block a{
+  display: block;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #4a4a4a;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.new-block i{
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 50px;
+  font-size: 40px;
+  cursor: pointer;
 }
 
 .individual-bloc-checkbox{
@@ -557,11 +585,11 @@ nav#email-list-nav a{
   bottom: 0;
   background-color: #fff;
   border: 1px solid #bababa;
-  z-index: 4;
   border-radius: 2px;
   padding-top: 2px;
   margin-bottom: 10px;
   float: left;
+  z-index: 2;
 }
 
 .individual-bloc-title{
