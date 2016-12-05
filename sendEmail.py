@@ -14,7 +14,6 @@ def set_to_email(email):
 
 print("Getting blocs from server...")
 conn = sqlite3.connect(DATABASE)
-conn.row_factory = lambda cursor, row: row[0]
 cur = conn.cursor()
 cur.execute("SELECT weburl FROM Blocs")
 weburl_data = cur.fetchall()
@@ -38,65 +37,90 @@ conn.close()
 # print(weburl_data[0])
 # print(type(weburl_data))
 
-#Splitting up the data lists into variables that can be added to the email
-# weburl_1 = str(weburl_data[0])
-# test = weburl_1[2:28]
-# print(test)
-# new_var = '"{}"'.format(test)
-#print("Test" + new_var)
-
-print(weburl_data)
 #print(weburl_data)
 formatted_web = []
-formatted_url = []
+formatted_img = []
 formatted_title = []
 formatted_notes = []
 
-for data in range(0,6):
-    this_data = str(weburl_data[data])
-    length = len((str(this_data)))
-    new_length = length - 2
-    this_data = this_data[2:-3]
-    new_data = '"{}"'.format(this_data)
-    #print(new_data)
-    data = new_data
+for data in range(0,7):
+    #Format weburl data
+    new_url_data = str(weburl_data[data])
+    new_url_data = new_url_data[2:-3]
+    web_url_data = '"{}"'.format(new_url_data)
+    data = web_url_data
     formatted_web.append(data)
-print(formatted_web)
 
-weburl_1 = str(weburl_data[0])
-weburl_2 = str(weburl_data[1])
-weburl_3 = str(weburl_data[2])
-weburl_4 = str(weburl_data[3])
-weburl_5 = str(weburl_data[4])
-weburl_6 = str(weburl_data[5])
-weburl_7 = str(weburl_data[6])
+for data in range(0,7):
+    #Format imgurl data
+    new_img_data = str(imgurl_data[data])
+    new_img_data = new_img_data[2:-3]
+    img_url_data = '"{}"'.format(new_img_data)
+    data = img_url_data
+    formatted_img.append(data)
 
-imgurl_1 = str(imgurl_data[0])
-imgurl_2 = str(imgurl_data[1])
-imgurl_3 = str(imgurl_data[2])
-imgurl_4 = str(imgurl_data[3])
-imgurl_5 = str(imgurl_data[4])
-imgurl_6 = str(imgurl_data[5])
-imgurl_7 = str(imgurl_data[6])
+for data in range(0,7):
+    #Format title data
+    new_title_data = str(title_data[data])
+    new_title_data = new_title_data[2:-3]
+    title_url_data = '"{}"'.format(new_title_data)
+    data = title_url_data
+    formatted_title.append(data)
 
-title_1 = str(title_data[0])
-title_1 = str(title_data[1])
-title_1 = str(title_data[2])
-title_1 = str(title_data[3])
-title_1 = str(title_data[4])
-title_1 = str(title_data[5])
-title_1 = str(title_data[6])
+for data in range(0,7):
+    #Format notes data
+    new_notes_data = str(notes_data[data])
+    new_notes_data = new_notes_data[2:-3]
+    notes_url_data = '"{}"'.format(new_notes_data)
+    data = notes_url_data
+    formatted_notes.append(data)
 
-notes_1 = str(notes_data[0])
-notes_1 = str(notes_data[1])
-notes_1 = str(notes_data[2])
-notes_1 = str(notes_data[3])
-notes_1 = str(notes_data[4])
-notes_1 = str(notes_data[5])
-notes_1 = str(notes_data[6])
+#Check formatting
+# print(formatted_web)
+# print(formatted_web[0])
+# print(" ")
+# print(formatted_img)
+# print(formatted_img[0])
+# print(" ")
+# print(formatted_title)
+# print(formatted_title[0])
+# print(" ")
+# print(formatted_notes)
+# print(formatted_notes[0])
+# print(" ")
 
-print(notes_1)
-print(type(notes_1))
+weburl_1 = str(formatted_web[0])
+weburl_1 = str(formatted_web[1])
+weburl_1 = str(formatted_web[2])
+weburl_1 = str(formatted_web[3])
+weburl_1 = str(formatted_web[4])
+weburl_1 = str(formatted_web[5])
+weburl_1 = str(formatted_web[6])
+
+imgurl_1 = str(formatted_img[0])
+imgurl_1 = str(formatted_img[1])
+imgurl_1 = str(formatted_img[2])
+imgurl_1 = str(formatted_img[3])
+imgurl_1 = str(formatted_img[4])
+imgurl_1 = str(formatted_img[5])
+imgurl_1 = str(formatted_img[6])
+
+title_1 = str(formatted_title[0])
+title_1 = str(formatted_title[1])
+title_1 = str(formatted_title[2])
+title_1 = str(formatted_title[3])
+title_1 = str(formatted_title[4])
+title_1 = str(formatted_title[5])
+title_1 = str(formatted_title[6])
+
+notes_1 = str(formatted_notes[0])
+notes_1 = str(formatted_notes[1])
+notes_1 = str(formatted_notes[2])
+notes_1 = str(formatted_notes[3])
+notes_1 = str(formatted_notes[4])
+notes_1 = str(formatted_notes[5])
+notes_1 = str(formatted_notes[6])
+
 from_email = "blocstest@outlook.com"
 from_pwd = "Blocs123"
 to_email = target_email
