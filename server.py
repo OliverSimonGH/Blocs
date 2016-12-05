@@ -10,7 +10,7 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(APP_ROOT, UPLOAD_PATH)
 
 app.secret_key = "this_is_a_secret"
-DATABASE = "blocs.db"
+DATABASE = "Blocs.db"
 
 #Home section - Adding blocks to database and removing from database
 @app.route("/")
@@ -24,20 +24,21 @@ def home():
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
-    fav = request.form.get('fav')
-    url = request.form.get('url')
-    imgurl = request.form.get('imgurl')
-    title = request.form.get('title')
-    notes = request.form.get('notes')
-    category = request.form.get('category')
+    parameters = [request.form["title"], request.form["notes"], request.form["url"], request.form["category"]]
+    database.write_bloc_to_database(parameters)
+    db_result = database.select_all()
+    result_list = []
+    current_list = []
 
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("INSERT INTO `Blocs`(`weburl`, `imgurl`, `title`, `notes`, `category`,`favourite`)\
-                VALUES(?,?,?,?,?,?)", (url, imgurl, title, notes, category, fav))
-    conn.commit()
-    conn.close()
-    return redirect("/")
+    for row in db_result:
+        current_list.append(row[0])
+        current_list.append(row[1])
+        current_list.append(row[2])
+        current_list.append(row[3])
+        current_list.append(row[4])
+        result_list.append(current_list)
+
+    return render_template('index.html', result=result_list)
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
@@ -135,54 +136,6 @@ def upload():
         upload_path = '{}/{}'.format(UPLOAD_FOLDER, file.filename)
         file.save(upload_path)
         return 'ok'
-
-@app.route('/editBloc', methods=['POST'])
-def editBlocForm():
-    blocid = request.form.get('blocid')
-    url = request.form.get('url')
-    imgurl = request.form.get('imgurl')
-    title = request.form.get('title')
-    notes = request.form.get('notes')
-    category = request.form.get('category')
-
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("UPDATE `Blocs` SET `weburl`=?, `imgurl`=?, `title`=?, `notes`=?, `category`=? WHERE `blocid`=?", (url, imgurl, title, notes, category, blocid))
-    conn.commit()
-    conn.close()
-    return redirect("/")
-
-@app.route('/deleteBloc', methods=['POST'])
-def deleteBlocForm():
-    blocNum = request.form.get('del_block')
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("DELETE FROM `Blocs` WHERE `blocid`=?", (blocNum,))
-    conn.commit()
-    conn.close()
-    return redirect("/")
-
-@app.route('/favBloc', methods=['POST'])
-def favBloc():
-    blocid = request.form['id']
-    fav = request.form['fav']
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("UPDATE Blocs SET favourite=? WHERE blocid=?", (fav, blocid))
-    conn.commit()
-    conn.close()
-    return "Favourited"
-
-@app.route('/unfavBloc', methods=['POST'])
-def unfavBloc():
-    blocid = request.form['id']
-    fav = request.form['fav']
-    conn = sqlite3.connect(DATABASE)
-    cur = conn.cursor()
-    cur.execute("UPDATE Blocs SET favourite=? WHERE blocid=?", (fav, blocid))
-    conn.commit()
-    conn.close()
-    return "Unfavourited"
 
 if __name__ == "__main__":
     database.delete_tables()
