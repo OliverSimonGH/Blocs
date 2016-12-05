@@ -7,13 +7,14 @@ from email.mime.text import MIMEText
 DATABASE = 'Blocs.db'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-target_email = ""
+target_email = "blocstest@outlook.com"
 
 def set_to_email(email):
     target_email = email
 
 print("Getting blocs from server...")
 conn = sqlite3.connect(DATABASE)
+conn.row_factory = lambda cursor, row: row[0]
 cur = conn.cursor()
 cur.execute("SELECT weburl FROM Blocs")
 weburl_data = cur.fetchall()
@@ -38,6 +39,30 @@ conn.close()
 # print(type(weburl_data))
 
 #Splitting up the data lists into variables that can be added to the email
+# weburl_1 = str(weburl_data[0])
+# test = weburl_1[2:28]
+# print(test)
+# new_var = '"{}"'.format(test)
+#print("Test" + new_var)
+
+print(weburl_data)
+#print(weburl_data)
+formatted_web = []
+formatted_url = []
+formatted_title = []
+formatted_notes = []
+
+for data in range(0,6):
+    this_data = str(weburl_data[data])
+    length = len((str(this_data)))
+    new_length = length - 2
+    this_data = this_data[2:-3]
+    new_data = '"{}"'.format(this_data)
+    #print(new_data)
+    data = new_data
+    formatted_web.append(data)
+print(formatted_web)
+
 weburl_1 = str(weburl_data[0])
 weburl_2 = str(weburl_data[1])
 weburl_3 = str(weburl_data[2])
@@ -70,16 +95,16 @@ notes_1 = str(notes_data[4])
 notes_1 = str(notes_data[5])
 notes_1 = str(notes_data[6])
 
-# print(notes_1)
-# print(type(notes_1))
-from_email = "bradye@cardiff.ac.uk"
-from_pwd = "Summertime11"
+print(notes_1)
+print(type(notes_1))
+from_email = "blocstest@outlook.com"
+from_pwd = "Blocs123"
 to_email = target_email
 
 # Set up base of image
 msg = MIMEMultipart('html')
 msg['Subject'] = "Test SMTPlib Message"
-msg['From'] = "BlocsTest@"
+msg['From'] = "blocstest@outlook.com"
 msg['To'] = target_email
 
 open_HTML = '<html> <head></head> <body>'
@@ -89,19 +114,19 @@ user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
 bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
 bloc_1_title = '<a href=' + title_1 + '> </a>'
 bloc_1_link =  "https://www.google.co.uk/?gws_rd=ssl"
-test = '<br> <a href= ' + bloc_1_link + '> Google </a>'
+#test = '<br> <a href=' + new_var + '> Google </a>'
 close_HTML = '</th></table></body></html>'
 
-new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + test + close_HTML
+new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + close_HTML
 
 msg.attach(MIMEText(new_html, 'html'))
 print(msg)
 
 # Change these based on the SMTP params of your mail provider
-mail = smtplib.SMTP('outlook.office365.com', 587)
+mail = smtplib.SMTP('smtp-mail.outlook.com', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("BlocsTest@outlook.com", "Blocs123")
-mail.sendmail("bradye@cardiff.ac.uk", target_email, msg.as_string())
+mail.login("blocstest@outlook.com", "Blocs123")
+mail.sendmail("blocstest@outlook.com", target_email, msg.as_string())
 print("Email sent")
 mail.quit()
