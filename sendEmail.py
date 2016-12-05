@@ -47,32 +47,33 @@ for data in range(0,7):
     #Format weburl data
     new_url_data = str(weburl_data[data])
     new_url_data = new_url_data[2:-3]
-    web_url_data = '"{}"'.format(new_url_data)
-    data = web_url_data
+    #web_url_data = '"{}"'.format(new_url_data)
+    #web_url_data = new_url_data
+    data = new_url_data
     formatted_web.append(data)
 
 for data in range(0,7):
     #Format imgurl data
     new_img_data = str(imgurl_data[data])
     new_img_data = new_img_data[2:-3]
-    img_url_data = '"{}"'.format(new_img_data)
-    data = img_url_data
+    #img_url_data = '"{}"'.format(new_img_data)
+    data = new_img_data
     formatted_img.append(data)
 
 for data in range(0,7):
     #Format title data
     new_title_data = str(title_data[data])
     new_title_data = new_title_data[2:-3]
-    title_url_data = '"{}"'.format(new_title_data)
-    data = title_url_data
+    #title_url_data = '"{}"'.format(new_title_data)
+    data = new_title_data
     formatted_title.append(data)
 
 for data in range(0,7):
     #Format notes data
     new_notes_data = str(notes_data[data])
     new_notes_data = new_notes_data[2:-3]
-    notes_url_data = '"{}"'.format(new_notes_data)
-    data = notes_url_data
+    #notes_url_data = '"{}"'.format(new_notes_data)
+    data = new_notes_data
     formatted_notes.append(data)
 
 #Check formatting
@@ -132,23 +133,42 @@ msg['From'] = "blocstest@outlook.com"
 msg['To'] = target_email
 
 open_HTML = '<html> <head></head> <body>'
+
 title = '<h1 style="text-align:center;"> SMILEnotes </h1> <br>'
 user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
-bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
+
+bloc_row_1_start = '<table style="width:100%";>'
 bloc_1_title = '<h3>' + title_1 + '</h3>'
 bloc_1_link = '<a href=' + weburl_1 + '>' + weburl_1 + '</a>'
-close_HTML = '</th></table></body></html>'
+bloc_1_notes = '<h4>' + notes_1 + '</h4>'
+bloc_row_1_end = '</table> <br>'
 
-new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + close_HTML
+bloc_row_2_start = '<table style-"width:100%";>'
+bloc_2_title = '<h3>' + title_2 + '</h3>'
+bloc_2_link = '<a href=' + weburl_2 + '>' + weburl_2 + '</a>'
+bloc_2_notes = '<h4>' + notes_2 + '</h4>'
+bloc_row_2_end = '</table> <br>'
+
+bloc_row_3_start = '<table style-"width:100%";>'
+bloc_3_title = '<h3>' + title_3 + '</h3>'
+bloc_3_link = '<a href=' + weburl_3 + '>' + weburl_3 + '</a>'
+bloc_3_notes = '<h4>' + notes_3 + '</h4>'
+bloc_row_3_end = '</table> <br>'
+
+signature_1 = '<br> <h4> Kind regards, </h4>'
+
+close_HTML = '</body></html>'
+
+new_html = open_HTML + title + user_details + bloc_row_1_start + bloc_1_title + bloc_1_link + bloc_1_notes + bloc_row_1_end + bloc_row_2_start + bloc_2_title + bloc_2_link + bloc_2_notes + bloc_row_2_end + bloc_row_3_start + bloc_3_title + bloc_3_link + bloc_3_notes + bloc_row_3_end + signature_1 + close_HTML
 
 msg.attach(MIMEText(new_html, 'html'))
 print(msg)
 
 # Change these based on the SMTP params of your mail provider
-mail = smtplib.SMTP('smtp-mail.outlook.com', 587)
+mail = smtplib.SMTP('smtp.gmail.com', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("blocstest@outlook.com", "Blocs123")
+mail.login("blocstest@gmail.com", "Blocs123")
 mail.sendmail("blocstest@outlook.com", target_email, msg.as_string())
 print("Email sent")
 mail.quit()
