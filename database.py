@@ -28,6 +28,23 @@ def create_tables():
     `sender` TEXT NOT NULL,\
     `date` TEXT NOT NULL,\
     `time` TEXT NOT NULL);")
+
+    conn.execute("CREATE TABLE IF NOT EXISTS `Users` (\
+    `userid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+    `emailAddress` TEXT NOT NULL,\
+    `password` TEXT NOT NULL);")
+
+    conn.execute("CREATE TABLE IF NOT EXISTS `UserProfile` (\
+    `profileid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
+    `personid` INTEGER,\
+    `name` TEXT,\
+    `qualifications` TEXT,\
+    `emailAddress` TEXT,\
+    `website` TEXT,\
+    'twitter' TEXT,\
+    'google' TEXT,\
+    'facebook' TEXT,\
+     FOREIGN KEY(personid) REFERENCES Users(userid));")
     conn.commit()
     conn.close()
 
@@ -65,6 +82,10 @@ def populate_tables():
 def delete_tables():
     conn = sqlite3.connect(DATABASE)
     conn.execute("DROP TABLE IF EXISTS Blocs;")
+    conn.execute("DROP TABLE IF EXISTS Emails;")
+    conn.execute("DROP TABLE IF EXISTS Logs;")
+    conn.execute("DROP TABLE IF EXISTS Users;")
+    conn.execute("DROP TABLE IF EXISTS UserProfile;")
     conn.execute("DROP TABLE IF EXISTS Emails;")
     conn.commit()
     conn.close()

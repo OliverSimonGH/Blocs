@@ -8,15 +8,28 @@ $(document).ready(function(){
       $(this).css('color', 'rgb(0, 0, 0)');
     }
   });
-});
+  $(".individual-bloc-checkbox").on('click', function() {
+      var id = $(this).data('id');
+
+      if($(this).data('move') == "none"){
+        $(this).children('i').show();
+        $(this).data('move', 'moved');
+        $('#drag' + id).appendTo('#drag-links');
+      }
+      else if($(this).data('move') == "moved"){
+        $(this).children('i').hide();
+        $(this).data('move', 'none');
+        $('#drag' + id).appendTo('#box');
+      }
+    });
+
+   });
 
 $('.individual-bloc-edit').on('click', function(){
   var id = $(this).data('id');
-
-  $('#edit-popup-' + id)[0].setAttribute('style', 'display: block;');
-  $('#cancel-' + id).one('click', function() {
-    console.log($("#edit-popup-" + id)[0]);
-    $('#edit-popup-' + id)[0].setAttribute('style', 'display: none;');
+  $('#edit-popup-' + id).show();
+  $('#cancel-' + id).on('click', function() {
+    $('#edit-popup-' + id).hide();
   });
 });
 
