@@ -7,6 +7,11 @@ from email.mime.text import MIMEText
 DATABASE = 'Blocs.db'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+target_email = ""
+
+def set_to_email(email):
+    target_email = email
+
 print("Getting blocs from server...")
 conn = sqlite3.connect(DATABASE)
 cur = conn.cursor()
@@ -69,20 +74,20 @@ notes_1 = str(notes_data[6])
 # print(type(notes_1))
 from_email = "bradye@cardiff.ac.uk"
 from_pwd = "Summertime11"
-to_email = "BlocsTest@outlook.com"
+to_email = target_email
 
 # Set up base of image
 msg = MIMEMultipart('html')
 msg['Subject'] = "Test SMTPlib Message"
-msg['From'] = "bradye@cardiff.ac.uk"
-msg['To'] = "BlocsTest@outlook.com"
+msg['From'] = "BlocsTest@"
+msg['To'] = target_email
 
 open_HTML = '<html> <head></head> <body>'
 title = '<h1 style="text-align:center;"> SMILEnotes </h1> <br>'
 user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
 
 bloc_row_1_start = '<table style="width:100%;> <th style="font-style:strong;"> <br>'
-bloc_1_title = '<a href="' + title_1 + '"> </a>'
+bloc_1_title = '<a href=' + title_1 + '> </a>'
 bloc_1_link =  "https://www.google.co.uk/?gws_rd=ssl"
 test = '<br> <a href= ' + bloc_1_link + '> Google </a>'
 close_HTML = '</th></table></body></html>'
@@ -96,7 +101,7 @@ print(msg)
 mail = smtplib.SMTP('outlook.office365.com', 587)
 mail.ehlo()
 mail.starttls()
-mail.login("bradye@cardiff.ac.uk", "Summertime11")
-mail.sendmail("bradye@cardiff.ac.uk", "BlocsTest@outlook.com", msg.as_string())
+mail.login("BlocsTest@outlook.com", "Blocs123")
+mail.sendmail("bradye@cardiff.ac.uk", target_email, msg.as_string())
 print("Email sent")
 mail.quit()
