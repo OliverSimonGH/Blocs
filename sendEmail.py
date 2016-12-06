@@ -67,7 +67,7 @@ def send_email():
 		#img_url_data = '"{}"'.format(new_img_data)
 		data = new_img_data
 		formatted_img.append(data)
-		
+
 	for data in range(0,7):
 		#Format title data
 		new_title_data = str(title_data[data])
