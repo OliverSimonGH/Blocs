@@ -222,6 +222,30 @@ def register_user():
         msg = "There was an error during registration"
         return render_template('/register', msg=msg)
 
+@app.route('/uploadProfile', methods=['POST'])
+def upload_profile():
+    name = request.form.get('name', default="Error")
+    qualifications = request.form.get('qualifications', default="Error")
+    emailAddress = request.form.get('name', default="Error")
+    website = request.form.get('sendwebsite', default="Error")
+    twitter = request.form.get('twitter', default="Error")
+    google = request.form.get('google', default="Error")
+    facebook = request.form.get('facebook', default="Error")
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO UserProfile (`name`, `qualifications`, `emailAddress`, `website`, `twitter`, `google`,`facebook`)\
+                    VALUES(?,?,?,?,?,?,?)", (name, qualifications, emailAddress, website, twitter, google, facebook))
+        conn.commit()
+        msg="Details added successfully"
+    except:
+        conn.rollback()
+        msg="Error in operation"
+    finally:
+        return msg
+        conn.close()
+        return redirect("/")
+
 if __name__ == "__main__":
     database.delete_tables()
     database.create_tags()

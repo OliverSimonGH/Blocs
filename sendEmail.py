@@ -509,7 +509,7 @@ def send_email():
         bloc_notes_10 = bloc_notes[9]
         bloc_row_end_10 = '</table> <br>'
 
-    signature_1 = '<br> <h4> Kind regards, </h4>'
+    signature_1 = '<br> <table style="width:100%";> <h4 style="text-align:center;"> Kind regards, </h4> </table>'
 
     close_HTML = '</body></html>'
 
