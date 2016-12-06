@@ -206,6 +206,22 @@ def unfavBloc():
     conn.close()
     return "Unfavourited"
 
+@app.route("/Login", methods=['GET'])
+def loginUser():
+    pass
+
+@app.route('/Register', methods=['POST'])
+def register_user():
+    emailAddress = request.form['emailAddress']
+    password = request.form['password']
+    result = database.create_user(emailAddress, password)
+    if(result):
+        msg = "User was successfully created!"
+        return render_template('/register', msg=msg)
+    else:
+        msg = "There was an error during registration"
+        return render_template('/register', msg=msg)
+
 if __name__ == "__main__":
     database.delete_tables()
     database.create_tags()
