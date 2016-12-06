@@ -212,29 +212,28 @@ def unfavBloc():
 
 @app.route('/Login')
 def LoginUser():
+    email = request.form['email']
+    password = request.form['password']
+    login_result = database.get_user_for_login(email)
+    print(login_result)
     return render_template("login.html")
 
-@app.route("/LoginProcess")
-def LoginProcess():
-    pass
-
-
-@app.route('/Register')
-def RgisterUser():
+@app.route('/Register', methods=['GET'])
+def register():
     return render_template('register.html')
 
-@app.route('/RegisterProcess', methods=['POST'])
+
+@app.route('/RegisterUser', methods=['POST'])
 def register_user():
-    if request.method == 'POST':
-        emailAddress = request.form['email']
-        password = request.form['password']
-        result = database.create_user(emailAddress, password)
-        if(result):
-            msg = "User was successfully created!"
-            return redirect("/Login")
-        else:
-            msg = "There was an error during registration"
-            return render_template('register.html', msg=msg)
+    emailAddress = request.form['emailAddress']
+    password = request.form['password']
+    result = database.create_user(emailAddress, password)
+    if(result):
+        msg = "User was successfully created!"
+        return render_template('/register', msg=msg)
+    else:
+        msg = "There was an error during registration"
+        return render_template('/register', msg=msg)
 
 if __name__ == "__main__":
     database.delete_tables()
