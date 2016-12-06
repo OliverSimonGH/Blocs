@@ -788,7 +788,14 @@ input#file {
 }
 
 #submitChange{
-  background: #0095ff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 100px;
+  background-color: #0095ff;
+  color: #ffffff;
+
 }
 
 td i {
@@ -805,7 +812,13 @@ td i {
 }
 
 #myBtn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  width: 200px;
   background-color: #0095ff;
+  color: #ffffff;
 
 }
 
