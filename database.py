@@ -161,3 +161,14 @@ def create_user(email, password):
         return true
     except Exception as e:
         return false
+
+
+def get_user_for_login(email):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("SELECT FROM Users WHERE emailAddress=?", (email))
+    conn.row_factory = sqlite3.Row
+    result = cur.fetchall()
+    conn.commit()
+    conn.close()
+    return result
