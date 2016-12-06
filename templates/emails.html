@@ -18,6 +18,7 @@
   <div class="email-list-title">
     <h3>Mailing List</h3>
   </div>
+  <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> -->
   <!-- <div class="email-list-sort-table" onchange="emailSort()">
     <span>Sorted by: </span>
     <select id="selectBox" name="category" onchange="sort()">
@@ -27,8 +28,8 @@
     </select>
   </div> -->
 
-  <div class="email-list-table">
-    <table class="email-table">
+  <!-- <div class="email-list-table">
+    <table class="email-table" id="emailTable">
       <thead>
         <tr><td>Email</td><td></td></tr>
       </thead>
@@ -46,9 +47,35 @@
         {% endfor %}
       </tbody>
     </table>
-  </div>
+  </div> -->
+
+
+
+  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+  <table id="myTable">
+    <tr class="header">
+      <th style="width:60%;">Email Address</th>
+    </tr>
+    {% for email in email_address %}
+    <tr>
+      <td>{{ email[0] }} <form action="/deleteEmail" method="POST" id="deleteEmail">
+       <input type="hidden" name="email_add" value="{{ email[0] }}">
+       <button type="submit" name="button">Remove from list</button>
+     </form></td>
+    </tr>
+
+
+
+
+    {% endfor %}
+  </table>
+
+
   <script type="text/javascript" src="static/js/jquery.min.js"></script>
   <script type="text/javascript" src="static/js/searchFilter.js"></script>
+  <script type="text/javascript" src="static/js/searchBar.js"></script>
   <script src="https://use.fontawesome.com/1ff151e915.js"></script>
 </body>
 </html>
