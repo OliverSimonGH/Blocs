@@ -47,12 +47,13 @@ def sendEmail():
     local_from_email = "blocstest@outlook.com"
     email_sent = str(request.json['emailForm'])
     check = int(request.json['checkRadio'])
-    blocArray = str(request.json['blocArray'])
+    bloc_Array = str(request.json['blocArray'])
+    print(request.json['blocArray'])
     date_time = time.strftime("%x")
     day_time = time.strftime("%X")
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
-    print("Email: {} \nBool: {} \nArray: {}".format(email_sent, check, blocArray))
+    print("Email: {} \nBool: {} \nArray: {}".format(email_sent, check, bloc_Array))
     conn = sqlite3.connect(DATABASE)
     # http://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows
     conn.row_factory = lambda cursor, row: row[0]
@@ -60,7 +61,7 @@ def sendEmail():
     cur.execute("SELECT emailAddress FROM Emails")
     data = cur.fetchall()
 
-    parameters = [email_sent, local_from_email, date_time, day_time, blocArray]
+    parameters = [email_sent, local_from_email, date_time, day_time, bloc_Array]
     set_emails(email_sent, local_from_email)
 
     if email_sent == "" or not email_val.match(email_sent):
