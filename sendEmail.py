@@ -18,15 +18,19 @@ def set_emails(to_email_local, from_email_local):
 
 
 def send_email():
-    count = 1
     global target_email
     global from_email
+
     print("Getting blocs from server...")
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = lambda cursor, row: row[0]
     cur = conn.cursor()
-    cur.execute("SELECT blocList FROM Logs WHERE logId = ?", (count,))
+    cur.execute("SELECT count(*) FROM `Logs`")
+    count = cur.fetchall()
+    print(count)
+    cur.execute("SELECT `blocList` FROM `Logs` WHERE `logId` = ?", (count[0],))
     Array_blocs = cur.fetchall()
+    print(Array_blocs)
 
     new_list = []
     for i in Array_blocs:
@@ -543,4 +547,3 @@ def send_email():
     mail.sendmail("blocstest@outlook.com", target_email, msg.as_string())
     print("Email sent")
     mail.quit()
-    count += 1
