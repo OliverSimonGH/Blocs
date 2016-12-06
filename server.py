@@ -206,6 +206,10 @@ def unfavBloc():
     conn.close()
     return "Unfavourited"
 
+@app.route('/Login')
+def LoginUser():
+    return render_template("login.html")
+
 if __name__ == "__main__":
     database.delete_tables()
     database.create_tags()
