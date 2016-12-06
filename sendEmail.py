@@ -31,6 +31,9 @@ def send_email():
     cur.execute("SELECT `blocList` FROM `Logs` WHERE `logId` = ?", (count[0],))
     Array_blocs = cur.fetchall()
     print(Array_blocs)
+    cur.execute("SELECT * FROM UserProfile")
+    user_profile = cur.fetchall()
+    print(user_profile)
 
     new_list = []
     for i in Array_blocs:
@@ -88,17 +91,6 @@ def send_email():
         for new in val:
             notes_data.append(new)
 
-    # Uncomment to check what data is coming through
-    # print(weburl_data)
-    # print("")
-    # print(imgurl_data)
-    # print("")
-    # print(title_data)
-    # print("")
-    # print(notes_data)
-    # print(weburl_data[0])
-    # print(type(weburl_data))
-
     weburl_show = []
     imgurl_show = []
     title_show = []
@@ -142,7 +134,6 @@ def send_email():
     # print(title_show)
     # print(weburl_show)
     # print(notes_show)
-
 
     for i, f in enumerate(title_show):
         bloc_title_title = '<h3>' + title_show[i] + '</h3>'
@@ -509,7 +500,7 @@ def send_email():
         bloc_notes_10 = bloc_notes[9]
         bloc_row_end_10 = '</table> <br>'
 
-    signature_1 = '<br> <table style="width:100%";> <h4 style="text-align:center;"> Kind regards, </h4> </table>'
+    signature_1 = '<br> <table style="width:100%";> <h4 style="text-align:center;"> Kind regards, </h4> <h4 style="text-align:center;"> smileNote team </h4> </table>'
 
     close_HTML = '</body></html>'
 

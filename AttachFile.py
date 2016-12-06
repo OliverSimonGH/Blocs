@@ -18,7 +18,7 @@ from email.mime.text import MIMEText
 filePath = "flower.jpg"#your file name
 
 From = 'blocstest@gmail.com'
-To = 'blocstest@outlook.com'
+To = 'blocstest@gmail.com'
 
 msg = MIMEMultipart()
 msg['From'] = From
