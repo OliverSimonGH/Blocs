@@ -208,12 +208,19 @@ def unfavBloc():
 
 @app.route('/Login')
 def LoginUser():
+    email = request.form['email']
+    password = request.form['password']
+    login_result = database.get_user_for_login(email)
+    print(login_result)
     return render_template("login.html")
 
-@app.route('/Register', methods=['GET','POST'])
+@app.route('/Register', methods=['GET'])
+def register():
+    return render_template('register.html')
+
+
+@app.route('/RegisterUser', methods=['POST'])
 def register_user():
-    if request.method == 'GET':
-        return redirect('/Login')
     emailAddress = request.form['emailAddress']
     password = request.form['password']
     result = database.create_user(emailAddress, password)
