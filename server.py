@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
+import json
 from sendEmail import send_email, set_emails
 import os, re, time
 from werkzeug.utils import secure_filename
@@ -60,6 +61,7 @@ def sendEmail():
     cur = conn.cursor()
     cur.execute("SELECT emailAddress FROM Emails")
     data = cur.fetchall()
+    msg = None
 
     parameters = [email_sent, local_from_email, date_time, day_time, bloc_Array]
     set_emails(email_sent, local_from_email)
@@ -93,7 +95,9 @@ def sendEmail():
 
     conn.commit()
     conn.close()
-    return msg
+    print(msg)
+    msg_dict = {'msg': msg}
+    return json.dumps(msg_dict)
 
 @app.route('/deleteEmail', methods=['POST'])
 def delete_email():

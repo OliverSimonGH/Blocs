@@ -95,10 +95,12 @@ $('#send-email').on('click', function(){
       contentType: 'application/json',
       dataType: 'json',
       success: function (data) {
-        $('#result').text(data);
+        console.log(data);
+        $('#result').text(data['msg']);
         $("#result").show().delay(5000).fadeOut();
       },
-      error: function (data) {
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
       }
     })
   );
