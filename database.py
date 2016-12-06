@@ -24,10 +24,11 @@ def create_tables():
 
     conn.execute("CREATE TABLE IF NOT EXISTS `Logs` (\
     `logId` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-    `emailAddress` TEXT NOT NULL,\
-    `sender` TEXT NOT NULL,\
-    `date` TEXT NOT NULL,\
-    `time` TEXT NOT NULL);")
+    `emailAddress` TEXT,\
+    `sender` TEXT,\
+    `date` TEXT,\
+    `time` TEXT,\
+    `blocList` TEXT);")
 
     conn.execute("CREATE TABLE IF NOT EXISTS `Users` (\
     `userid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
@@ -36,15 +37,13 @@ def create_tables():
 
     conn.execute("CREATE TABLE IF NOT EXISTS `UserProfile` (\
     `profileid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-    `personid` INTEGER,\
     `name` TEXT,\
     `qualifications` TEXT,\
     `emailAddress` TEXT,\
     `website` TEXT,\
     'twitter' TEXT,\
     'google' TEXT,\
-    'facebook' TEXT,\
-     FOREIGN KEY(personid) REFERENCES Users(userid));")
+    'facebook' TEXT);")
     conn.commit()
     conn.close()
 
@@ -138,7 +137,7 @@ def create_email(email_sent, check):
 def write_log(parameters):
     conn = sqlite3.connect(DATABASE)
     cur = conn.cursor()
-    cur.execute("INSERT INTO Logs(emailAddress, sender, date, time) VALUES(?, ?, ?, ?)", (parameters[0], parameters[1], parameters[2], parameters[3]))
+    cur.execute("INSERT INTO Logs (`emailAddress`, `sender`, `date`, `time`, `blocList`) VALUES(?,?,?,?,?)", (parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]))
     conn.commit()
     conn.close()
 

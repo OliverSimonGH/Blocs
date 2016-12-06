@@ -73,4 +73,58 @@ $(document).ready(function(){
   $("img").error(function(){
     $(this).attr('src', 'static/images/missing.png');
   });
+
 });
+
+$('#send-email').on('click', function(){
+  var blocArray = [];
+  var emailForm = $('.email-container #current-email').val();
+  var checkRadio = null;
+
+  checkRadio = $("#send-radio").is(":checked") ? 1 : 0;
+
+  $('#drag-links .individual-blocs').each(function() {
+    blocArray.push($(this).data('id'));
+  });
+
+  $(this).submit(
+    $.ajax({
+      url: "/sendEmail",
+      data: JSON.stringify({emailForm: emailForm, checkRadio: checkRadio, blocArray: blocArray}),
+      type: "POST",
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function (data) {
+        $('#result').text(data);
+        $("#result").show().delay(5000).fadeOut();
+      },
+      error: function (data) {
+      }
+    })
+  );
+});
+
+// $('#send-email').on('click', function(){
+//   var blocArray = [];
+//   var form = $('.email-container :input').serialize();
+//
+//   $('#drag-links .individual-blocs').each(function() {
+//     blocArray.push($(this).data('id'));
+//   });
+//
+//   $(this).submit(
+//     $.ajax({
+//       url: "/sendEmail",
+//       data: {form: form, blocArray: blocArray},
+//       type: "POST",
+//       success: function (data) {
+//         console.log("success: " + data);
+//         $('#result').text(data);
+//         $("#result").show().delay(5000).fadeOut();
+//       },
+//       error: function (data) {
+//         console.log(data);
+//       }
+//     })
+//   );
+// });

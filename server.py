@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
-import os, re
+from sendEmail import send_email, set_emails
+import os, re, time
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -20,7 +21,9 @@ def home():
     cur = conn.cursor()
     cur.execute("SELECT * FROM `Blocs`")
     data = cur.fetchall()
-    return render_template('index.html', data=data)
+    cur.execute("SELECT * FROM `UserProfile` WHERE profileid=1")
+    data1 = cur.fetchall()
+    return render_template('index.html', data=data, data1=data1)
 
 @app.route("/uploadBloc", methods=['POST'])
 def upload_bloc():
@@ -41,11 +44,16 @@ def upload_bloc():
 
 @app.route("/sendEmail", methods=['POST'])
 def sendEmail():
-    email_sent = request.form.get('send-email')
-    email_radio = request.form.get('send-radio')
-    check = bool(email_radio)
+    local_from_email = "blocstest@outlook.com"
+    email_sent = str(request.json['emailForm'])
+    check = int(request.json['checkRadio'])
+    blocArray = str(request.json['blocArray'])
+    date_time = time.strftime("%x")
+    day_time = time.strftime("%X")
+    email_test = "blocstest@outlook.com"
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
+    print("Email: {} \nBool: {} \nArray: {}".format(email_sent, check, blocArray))
     conn = sqlite3.connect(DATABASE)
     # http://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows
     conn.row_factory = lambda cursor, row: row[0]
@@ -53,24 +61,39 @@ def sendEmail():
     cur.execute("SELECT emailAddress FROM Emails")
     data = cur.fetchall()
 
+    parameters = [email_sent, local_from_email, date_time, day_time, blocArray]
+    set_emails(email_sent, local_from_email)
+
     if email_sent == "" or not email_val.match(email_sent):
         msg = "Please enter a valid e-mail address"
 
     elif email_sent in data:
         print("Email already exists")
+        if check == 1:
+            database.write_log(parameters)
+            cur.execute("UPDATE Emails SET emailList=1 WHERE emailAddress=?",(email_sent,))
         if check == 0:
-            cur.execute("UPDATE Emails SET emailList=0 WHERE emailAddress=?",(email_sent,))
+            database.write_log(parameters)
+
         msg = "You have sent an e-mail to: " + email_sent
         #Send email
+        sendEmail.target_email = email_sent
+        sendEmail.from_email = local_from_email
+        send_email()
+
     else:
         # store new email sent into the database
         database.create_email(email_sent, check)
         msg = "You have sent an e-mail to: " + email_sent
         # send email
+        database.write_log(parameters)
+        sendEmail.target_email = email_sent
+        sendEmail.from_email = local_from_email
+        send_email()
 
     conn.commit()
     conn.close()
-    return render_template("index.html", msg=msg)
+    return msg
 
 @app.route('/deleteEmail', methods=['POST'])
 def delete_email():
