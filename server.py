@@ -50,7 +50,6 @@ def sendEmail():
     blocArray = str(request.json['blocArray'])
     date_time = time.strftime("%x")
     day_time = time.strftime("%X")
-    email_test = "blocstest@outlook.com"
     email_val = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
     print("Email: {} \nBool: {} \nArray: {}".format(email_sent, check, blocArray))
@@ -84,9 +83,9 @@ def sendEmail():
     else:
         # store new email sent into the database
         database.create_email(email_sent, check)
-        msg = "You have sent an e-mail to: " + email_sent
-        # send email
         database.write_log(parameters)
+        # send email
+        msg = "You have sent an e-mail to: " + email_sent
         sendEmail.target_email = email_sent
         sendEmail.from_email = local_from_email
         send_email()
@@ -122,7 +121,8 @@ def emails():
 #Logs - Add and view logs
 @app.route("/logs")
 def logs():
-    return render_template('logs.html')
+    results = database.read_logs()
+    return render_template('logs.html', results=results)
 
 @app.route("/profile")
 def profile():

@@ -349,7 +349,9 @@ img#uploadPreview{
 
 .drag-links{
   margin-top: 20px;
-  width: 100%;
+  min-height: 132px;
+  overflow: auto;
+  margin-bottom: 10px;
 }
 
 .drag-links::-webkit-input-placeholder {
@@ -693,11 +695,165 @@ input#file {
   margin-right: 1%;
 }
 
-#dzMsg {
+/* NOTE: SETTINGS PAGE STYLING */
+
+.find {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.changeAccount {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.changeAccount input {
+  width: 30%;
+}
+
+.templatesTable {
+  width: 60%;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 5px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: white;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: white;
+    color: white;
+}
+
+#submitChange{
+  background: #0095ff;
+}
+
+td i {
+  margin-left: 10px;
+}
+
+#userSearch {
+  width: 50%;
+}
+
+.ChangeUser {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#myBtn {
+  background-color: #0095ff;
 
 }
 
-/*.dropIcon {
-  width: 200px;
-  height: 200px;
-}*/
+/* NOTE: SIDENAV DROPZONE */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: white;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.uploadBtn {
+  margin-bottom: 10px;
+}

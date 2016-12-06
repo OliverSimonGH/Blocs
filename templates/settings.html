@@ -14,7 +14,7 @@
       <img id="cog" src="/static/images/cog.png" alt=""/>
       <div id="dropdown-content">
         <h3 id="nav-username"> Insert name here </h3>
-        <a href="/profile"> Profile </a>
+        <a href="#" id="profile"> Profile </a>
         <a href="/settings"> Settings </a>
         <a href="/logs"> Logs </a>
         <a href="/emails"> Email list </a>
@@ -23,5 +23,147 @@
       </div>
     </div>
   </nav>
+  <section class="find">
+  <p class="control has-icon">
+  <input class="input" type="email" id="userSearch" placeholder="Search Bloc">
+  <i class="fa fa-search" aria-hidden="true"></i>
+  <button class="button is-success" id="submitChange">
+    Search
+  </button>
+</section>
+
+<section class= "ChangeUser">
+  <h2 class="subtitle">Change User info</h2>
+
+<button id="myBtn" class="button is-success">Configure User Info</button>
+</section>
+
+<section class="templatesTable">
+  <h2 class="subtitle">Favourite resources</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Page</th>
+      <th>Resource Type</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tfoot>
+
+  </tfoot>
+  <tbody>
+    <tr>
+      <td><i class="fa fa-external-link" aria-hidden="true"></i>
+Google.com</td>
+      <td>Text<i class="fa fa-file-text" aria-hidden="true"></i>
+</td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-external-link" aria-hidden="true"></i>
+Youtube.com</td>
+      <td>Video <i class="fa fa-video-camera" aria-hidden="true"></i>
+</td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-external-link" aria-hidden="true"></i>
+Wiki.com</td>
+      <td>Text<i class="fa fa-file-text" aria-hidden="true"></i>
+</td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td><i class="fa fa-external-link" aria-hidden="true"></i>
+Yahoo.com</td>
+      <td>Text<i class="fa fa-file-text" aria-hidden="true"></i>
+</td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </td>
+      <td class="is-icon">
+        <a href="#">
+          <i class="fa fa-instagram"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+<!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <!-- <h2>Modal Header</h2> -->
+    </div>
+    <div class="modal-body">
+      <h2 class="subtitle">Change user Info</h2>
+
+      <p class="control has-icon">
+      <input class="input" type="email" placeholder="Current Email">
+      <i class="fa fa-envelope"></i>
+    <p class="control has-icon">
+    <input class="input" type="email" placeholder="New Email">
+    <i class="fa fa-envelope"></i>
+  </p>
+  <p class="control has-icon">
+    <input class="input" type="password" placeholder="Password">
+    <i class="fa fa-lock"></i>
+  </p>
+  <p class="control">
+    <button class="button is-success" id="submitChange">
+      submit
+    </button>
+  </p>
+    <div class="modal-footer">
+      <!-- <h3>Modal Footer</h3> -->
+    </div>
+  </div>
+
+</div>
+
+
+<script src="https://use.fontawesome.com/1ff151e915.js"></script>
+<script type="text/javascript" src="static/js/userModal.js"></script>
+
+
+
 </body>
 </html>
