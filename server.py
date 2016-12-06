@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify, redirect
 import database
 import sqlite3
+import json
 from sendEmail import send_email, set_emails
 import os, re, time
 from werkzeug.utils import secure_filename
@@ -60,6 +61,7 @@ def sendEmail():
     cur = conn.cursor()
     cur.execute("SELECT emailAddress FROM Emails")
     data = cur.fetchall()
+    msg = None
 
     parameters = [email_sent, local_from_email, date_time, day_time, bloc_Array]
     set_emails(email_sent, local_from_email)
@@ -93,7 +95,9 @@ def sendEmail():
 
     conn.commit()
     conn.close()
-    return msg
+    print(msg)
+    msg_dict = {'msg': msg}
+    return json.dumps(msg_dict)
 
 @app.route('/deleteEmail', methods=['POST'])
 def delete_email():
@@ -208,29 +212,28 @@ def unfavBloc():
 
 @app.route('/Login')
 def LoginUser():
+    #email = request.form['email']
+    #password = request.form['password']
+    #login_result = database.get_user_for_login(email)
+    #print(login_result)
     return render_template("login.html")
 
-@app.route("/LoginProcess")
-def LoginProcess():
-    pass
-
-
-@app.route('/Register')
-def RgisterUser():
+@app.route('/Register', methods=['GET'])
+def register():
     return render_template('register.html')
 
-@app.route('/RegisterProcess', methods=['POST'])
+
+@app.route('/RegisterUser', methods=['POST'])
 def register_user():
-    if request.method == 'POST':
-        emailAddress = request.form['email']
-        password = request.form['password']
-        result = database.create_user(emailAddress, password)
-        if(result):
-            msg = "User was successfully created!"
-            return redirect("/Login")
-        else:
-            msg = "There was an error during registration"
-            return render_template('register.html', msg=msg)
+    emailAddress = request.form['emailAddress']
+    password = request.form['password']
+    result = database.create_user(emailAddress, password)
+    if(result):
+        msg = "User was successfully created!"
+        return render_template('/register', msg=msg)
+    else:
+        msg = "There was an error during registration"
+        return render_template('/register', msg=msg)
 
 @app.route('/uploadProfile', methods=['POST'])
 def upload_profile():

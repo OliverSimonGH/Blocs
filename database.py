@@ -157,4 +157,15 @@ def create_user(email, password):
         cur.execute("INSERT INTO `Users` (`emailAddress`, `password`) VALUES(?,?)", (email, password))
         conn.commit()
         conn.close()
-        return True
+        return true
+
+
+def get_user_for_login(email):
+    conn = sqlite3.connect(DATABASE)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM Users WHERE emailAddress=?", email)
+    conn.row_factory = sqlite3.Row
+    result = cur.fetchall()
+    conn.commit()
+    conn.close()
+    return result
