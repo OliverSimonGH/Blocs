@@ -152,12 +152,9 @@ def read_logs():
     return result
 
 def create_user(email, password):
-    try:
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        cur.execute("INSERT INTO Users (`emailAddress`, `password`) VALUES(?,?)", (email, password))
+        cur.execute("INSERT INTO `Users` (`emailAddress`, `password`) VALUES(?,?)", (email, password))
         conn.commit()
         conn.close()
-        return true
-    except Exception as e:
-        return false
+        return True

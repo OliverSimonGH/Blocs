@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <title> Email list </title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="static/css/bulma.css">
+  <link rel="stylesheet" type="text/css" href="static/css/master.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+  <nav id="email-list-nav">
+    <div class="email-list-back">
+      <a href="/"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="register-content">
+      <div class="register-content-form">
+        <form id="register-form"action="/RegisterProcess" method="post">
+          <input type="text" name="email" placeholder="Email Address">
+          <input type="text" name="password" placeholder="Password">
+          <button type="submit" name="button">REGISTER</button>
+        </form>
+      </div>
+    </div>
+  </div>
