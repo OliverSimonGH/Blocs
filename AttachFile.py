@@ -17,8 +17,8 @@ from email.mime.text import MIMEText
 
 filePath = "flower.jpg"#your file name
 
-From = 'ahmedalsaab5@gmail.com'
-To = 'ahmedalsaab5@gmail.com'
+From = 'blocstest@gmail.com'
+To = 'blocstest@outlook.com'
 
 msg = MIMEMultipart()
 msg['From'] = From
@@ -30,7 +30,7 @@ msg.attach(MIMEText('Sample message'))
 try:
     smtp = smtplib.SMTP('smtp.gmail.com:587')
     smtp.starttls()
-    smtp.login('ahmedalsaab5@gmail.com', 'lol123123')
+    smtp.login('blocstest@gmail.com', 'Blocs123')
 except:
     i = 1
 else:
