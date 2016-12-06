@@ -100,7 +100,7 @@ $('#send-email').on('click', function(){
         $("#result").show().delay(5000).fadeOut();
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
+        console.log(jqXHR, textStatus, errorThrown);
       }
     })
   );
