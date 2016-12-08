@@ -16,7 +16,6 @@ def set_emails(to_email_local, from_email_local):
 	from_email = from_email_local
 	target_email = to_email_local
 
-
 def send_email():
     global target_email
     global from_email
@@ -122,7 +121,7 @@ def send_email():
     open_HTML = '<html> <head></head> <body>'
 
     title = '<h1 style="text-align:center;"> SMILEnotes </h1> <br>'
-    user_details = '<p> {{USER_FULLNAME}} has sent you some links. </p> <br>'
+    user_details = '<p> Lee has sent you some links. </p> <br>'
 
     bloc_title = []
     bloc_link = []
